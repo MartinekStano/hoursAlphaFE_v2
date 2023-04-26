@@ -5,6 +5,8 @@ import { AppRoutingModule, basicRoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './application/main/footer/footer.component';
 import { HeaderComponent } from './application/main/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { HeaderComponent } from './application/main/header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

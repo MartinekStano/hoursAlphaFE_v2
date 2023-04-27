@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../service/validation.service';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { VerifyEmailModalComponent } from '../../popups/verify-email-modal/verify-email-modal.component';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +27,7 @@ export class RegisterComponent {
 
   constructor(
     private validationService: ValidationService,
-
+    private modalService: NgbModal, 
   ) { }
 
   ngOnInit(): void {
@@ -64,4 +66,8 @@ export class RegisterComponent {
       return this.validationService.isEmailValid(email);
     }
   }
+
+  openModal() {
+		this.modalService.open(VerifyEmailModalComponent);
+	}
 }

@@ -76,14 +76,33 @@
                                 <li class="list-group-item list-group-item-danger" *ngIf="errorMessage">{{errorMessage}}</li>
                             </ul>
 
+                            <div class="row link-row">
+                                <div class="col-12"><a class="link" routerLink="/login">Already have an account?</a></div>
+                                <div class="col-12"><a class="link" (click)="openModal()">Send Verification <strong>E-Mail</strong></a></div>
+                            </div>
+
                             <button class="btn btn-primary register-button form-group" type="submit"
                                 [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false">
                                 Submit Registration
                             </button>
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <p>Hello, World!</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+        </div>
+    </ng-template>
 </body> 

@@ -49,6 +49,17 @@ body{
     height: auto;
 }
 
+.link-row{
+  margin-top: 1rem;
+}
+
+.link{
+  cursor: pointer;
+}
+
+.link-row a{
+  text-decoration: none;
+}
 
 
 body::before {

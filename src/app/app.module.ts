@@ -39,7 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
     FooterComponent,
     HeaderComponent,
+    VerifyEmailModalComponent,
     
   ],
   imports: [

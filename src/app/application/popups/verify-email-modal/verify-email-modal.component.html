@@ -1,0 +1,24 @@
+<div class="verify-modal-wrapper">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Verify Your Account!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>To verify your account enter an E-Mail address below:</p>
+        <div class="row gy-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <input id="email" type="email" [(ngModel)]="email" class="form-control" placeholder="E-Mail" required>
+                    <label for="email">E-Mail</label>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-danger" *ngIf="isEmailValidFormat() == false">Email is <strong>Invalid!</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary ml-auto" (click)="sendEmail()" [disabled]="isEmailValidFormat() === false || isEmailNull() === false">Send Verification E-Mail</button>
+    </div>
+</div>

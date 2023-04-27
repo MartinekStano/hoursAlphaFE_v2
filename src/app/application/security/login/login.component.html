@@ -10,7 +10,7 @@
                             <div class="row gy-3 login-form-row">
                                 <div class="col-12">
                                     <div class="form-floating email-input">
-                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" required formControlName="email">
+                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" required formControlName="email" [ngClass]="{'is-invalid': isEmailValidFormat() === false }">
                                         <label for="email">Email</label>
 
                                         <ul class="list-group">
@@ -55,7 +55,7 @@
                             <div class="row link-row">
                                 <div class="col-12"><a class="link" routerLink="/register">Don't have an account yet?</a></div>
                                 <div class="col-12"><a class="link" routerLink="/forgotPassword"><strong>Forgot Password?</strong></a></div>
-                                <div class="col-12"><a class="link">Send Verification <strong>E-Mail</strong></a></div>
+                                <div class="col-12"><a class="link" (click)="openModal()">Send Verification <strong>E-Mail</strong></a></div>
                             </div>
                         </form>
                     </div>

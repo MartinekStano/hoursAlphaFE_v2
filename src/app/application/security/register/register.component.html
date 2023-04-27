@@ -5,31 +5,37 @@
                 <div class="col-6 d-none d-md-block main-cols-landing">1</div>
                 <div class="col-md-6 main-cols-landing">
                     <div class="register-card">
-                        <form>  
+                        <form [formGroup]="registerGroup" (ngSubmit)="test()">  
                             <h1>Register</h1>
                             <div class="row register-form-row">
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <input id="firstName" type="text" class="form-control" placeholder="First Name" required>
+                                        <input id="firstName" type="text" class="form-control" placeholder="First Name" formControlName="firstName" required>
                                         <label for="email">First Name</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <input id="lastName" type="text" class="form-control" placeholder="lastName" required>
+                                        <input id="lastName" type="text" class="form-control" placeholder="lastName" formControlName="lastName" required>
                                         <label for="email">Last Name</label>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-floating email-input">
-                                <input id="email" type="email" class="form-control" placeholder="E-Mail" required>
+                                <input id="email" type="email" class="form-control" placeholder="E-Mail" formControlName="email" required [ngClass]="{'is-invalid': isEmailValidFormat() === false }">
                                 <label for="email">Email</label>
+
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-danger" *ngIf="isEmailValidFormat() == false">Email is <strong>Invalid!</strong></li>
+                                </ul>
                             </div>
+
                             <div class="row gy-3">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6">
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input id="password" type="password" [type]="hide ? 'password' : 'text'" class="form-control" placeholder="Password" required>
+                                            <input id="password" type="password" [type]="hide ? 'password' : 'text'" class="form-control" placeholder="Password" formControlName="password" required [ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false}">
                                             <label for="email">Password</label>
                                         </div>
 
@@ -40,10 +46,10 @@
                                         </div> 
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-lg-6">
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input id="passwordRepeat" type="password" [type]="hide2 ? 'password' : 'text'" class="form-control" placeholder="Password Repeat" required>
+                                            <input id="passwordRepeat" type="password" [type]="hide2 ? 'password' : 'text'" class="form-control" placeholder="Password Repeat" formControlName="passwordCheck" required [ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false}">
                                             <label for="email">Password Repeat</label>
                                         </div>
 
@@ -58,12 +64,20 @@
 
                             <div class="register-check-wrapper">
                                 <div class="form-check">
-                                    <input type="checkbox" id="email" class="form-check-input">
+                                    <input type="checkbox" id="email" class="form-check-input" formControlName="termsAccepted">
                                     <label for="email" class="form-check-label">Term and conditions</label>
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary register-button">
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-danger" *ngIf="passwordsMatch() == false">Passwords <strong>don't match!</strong></li>
+                                <li class="list-group-item list-group-item-danger" *ngIf="invalidPasswordLenght() == false">Password must be at least <strong>8 characters long!</strong></li>
+                                <li class="list-group-item list-group-item-danger" *ngIf="invalidPasswordFormat() == false">Password must contain at least <strong>one number!</strong></li>
+                                <li class="list-group-item list-group-item-danger" *ngIf="errorMessage">{{errorMessage}}</li>
+                            </ul>
+
+                            <button class="btn btn-primary register-button form-group" type="submit"
+                                [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false">
                                 Submit Registration
                             </button>
                         </form>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './application/main/footer/footer.component';
 import { HeaderComponent } from './application/main/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Angular Material Components
 import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -85,7 +86,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule, 
+    ReactiveFormsModule,
     
   ],
   providers: [],

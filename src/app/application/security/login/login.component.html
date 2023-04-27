@@ -5,20 +5,24 @@
                 <div class="col-6 d-none d-md-block main-cols-landing">1</div>
                 <div class="col-md-6 main-cols-landing">
                     <div class="login-card">
-                        <form>  
+                        <form [formGroup]="loginGroup" (ngSubmit)="login()">  
                             <h1>Login</h1>
                             <div class="row gy-3 login-form-row">
                                 <div class="col-12">
                                     <div class="form-floating email-input">
-                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" required>
+                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" required formControlName="email">
                                         <label for="email">Email</label>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-danger" *ngIf="isEmailValidFormat() == false">Wrong <strong>E-Mail Format!</strong></li>
+                                        </ul>
                                     </div>
                                 </div>
                                   
                                 <div class="col-12">  
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input id="password" type="password" class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+                                            <input id="password" type="password" class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
                                             <label for="email">Password</label>
                                         </div>
 
@@ -30,22 +34,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row link-row">
-                                <div class="col-12"><a class="link" routerLink="/register">Don't have an account yet?</a></div>
-                                <div class="col-12"><a class="link" routerLink="/forgotPassword">Forgot Password?</a></div>
-                                <div class="col-12"><a class="link">Send Verification E-Mail</a></div>
-                            </div>
+
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-danger" *ngIf="errorMessage">{{errorMessage}}</li>
+                            </ul>
+
                             <div class="row">
                                 <div class="col-4">
-                                    <button class="btn btn-secondary login-button" routerLink="/landing">
+                                    <button class="btn btn-secondary login-button" routerLink="/landing" type="submit">
                                         Cancel
                                     </button>
                                 </div>
                                 <div class="col-8">
-                                    <button class="btn btn-primary login-button form-group" type="submit">
+                                    <button class="btn btn-primary login-button form-group" type="submit" [disabled]="!loginGroup.valid || isEmailValidFormat() == false">
                                         Login
                                     </button>
                                 </div>
+                            </div>
+
+                            <div class="row link-row">
+                                <div class="col-12"><a class="link" routerLink="/register">Don't have an account yet?</a></div>
+                                <div class="col-12"><a class="link" routerLink="/forgotPassword"><strong>Forgot Password?</strong></a></div>
+                                <div class="col-12"><a class="link">Send Verification <strong>E-Mail</strong></a></div>
                             </div>
                         </form>
                     </div>

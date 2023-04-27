@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidationService } from '../../service/validation.service';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ export class RegisterComponent {
   });
 
   constructor(
+    private validationService: ValidationService,
 
   ) { }
 
@@ -30,7 +32,7 @@ export class RegisterComponent {
 
   }
 
-  test(){
+  register(){
     console.log(this.registerGroup.value);
   }
 
@@ -56,15 +58,10 @@ export class RegisterComponent {
 
   isEmailValidFormat(): boolean {
     const email = this.registerGroup.value.email;
-    if (email === null || email === undefined) {
-      return false;
+    if(email === null || email === undefined){
+      return false
+    } else {
+      return this.validationService.isEmailValid(email);
     }
-    return this.isEmailValid(email);
   }
-
-  isEmailValid(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return email ? emailRegex.test(email): true;
-  }
-  
 }

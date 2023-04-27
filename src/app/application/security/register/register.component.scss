@@ -1,0 +1,35 @@
+.main-cols-landing{
+    height: 100vh;
+}
+  
+.register-card{
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+}
+  
+.email-input{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+  
+.register-form-row{
+    margin-top: 2rem;
+}
+  
+.register-check-wrapper{
+    margin-top: 1rem;
+    text-align: left;
+}
+  
+.register-button{
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+  
+[class*="col"] {
+      // background-color: rgb(180, 255, 196);
+    //   border: 1px solid rgb(255, 133, 133);
+}

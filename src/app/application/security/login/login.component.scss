@@ -1,0 +1,37 @@
+.main-cols-landing{
+    height: 100vh;
+}
+
+.login-card{
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+}
+
+.login-form-row{
+    margin-top: 2rem;
+}
+
+.login-form-row{
+    margin-top: 2rem;
+}
+
+.login-button{
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.link-row{
+    margin-top: 1rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+[class*="col"] {
+    // background-color: rgb(180, 255, 196);
+    // border: 1px solid rgb(255, 133, 133);
+}

@@ -1,1 +1,47 @@
-<p>login works!</p>
+<body id="body">
+    <div class="container">
+        <div class="landing-wrapper">
+            <div class="row">
+                <div class="col-6 d-none d-md-block main-cols-landing">1</div>
+                <div class="col-md-6 main-cols-landing">
+                    <div class="login-card">
+                        <form>  
+                            <h1>Login</h1>
+                            <div class="row gy-3 login-form-row">
+                                <div class="col-12">
+                                    <div class="form-floating email-input">
+                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" required>
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">  
+                                    <div class="form-floating email-input">
+                                        <input id="password" type="password" class="form-control" placeholder="Password" required>
+                                        <label for="email">Password</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row link-row">
+                                <div class="col-12"><a class="link" routerLink="/register">Don't have an account yet?</a></div>
+                                <div class="col-12"><a class="link" routerLink="/forgotPassword">Forgot Password?</a></div>
+                                <div class="col-12"><a class="link">Send Verification E-Mail</a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button class="btn btn-secondary login-button" routerLink="/landing">
+                                        Cancel
+                                    </button>
+                                </div>
+                                <div class="col-8">
+                                    <button class="btn btn-primary login-button">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body> 

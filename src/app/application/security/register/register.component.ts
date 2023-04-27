@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
+  hide: boolean = true;
+  hide2: boolean = true;
+
+  constructor() { }
 }

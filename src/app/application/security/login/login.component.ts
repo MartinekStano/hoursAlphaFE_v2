@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  hide: boolean = true;
+
+  constructor() { }
 }

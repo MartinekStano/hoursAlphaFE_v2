@@ -27,15 +27,31 @@
                             </div>
                             <div class="row gy-3">
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input id="password" type="password" class="form-control" placeholder="Password" required>
-                                        <label for="email">Password</label>
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input id="password" type="password" [type]="hide ? 'password' : 'text'" class="form-control" placeholder="Password" required>
+                                            <label for="email">Password</label>
+                                        </div>
+
+                                        <div class="input-group-text" style="height: 58px">
+                                            <button id="eye" mat-icon-button matSuffix type="button"  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon class="eye_icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-floating">
-                                        <input id="passwordRepeat" type="password" class="form-control" placeholder="Password Repeat" required>
-                                        <label for="email">Password Repeat</label>
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input id="passwordRepeat" type="password" [type]="hide2 ? 'password' : 'text'" class="form-control" placeholder="Password Repeat" required>
+                                            <label for="email">Password Repeat</label>
+                                        </div>
+
+                                        <div class="input-group-text" style="height: 58px">
+                                            <button id="eye" mat-icon-button matSuffix type="button"  (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                                                <mat-icon class="eye_icon">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

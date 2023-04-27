@@ -14,10 +14,19 @@
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
+                                  
                                 <div class="col-12">  
-                                    <div class="form-floating email-input">
-                                        <input id="password" type="password" class="form-control" placeholder="Password" required>
-                                        <label for="email">Password</label>
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input id="password" type="password" class="form-control" placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+                                            <label for="email">Password</label>
+                                        </div>
+
+                                        <div class="input-group-text" style="height: 58px">
+                                            <button id="eye" mat-icon-button matSuffix type="button"  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon class="eye_icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

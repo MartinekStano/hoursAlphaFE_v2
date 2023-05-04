@@ -1,4 +1,4 @@
-.main-cols-landing{
+.main-cols-register{
     height: 100vh;
 }
   
@@ -15,7 +15,7 @@
 }
   
 .register-form-row{
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
   
 .register-check-wrapper{
@@ -27,6 +27,22 @@
     width: 100%;
     margin-top: 1rem;
     padding: 1rem;
+    font-size: large;
+}
+
+.role-type{
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.role-button{
+    width: 100%;
+    padding: 1rem;
+    font-size: large;
+}
+
+.role-pick{
+    width: 100%;
 }
   
 [class*="col"] {

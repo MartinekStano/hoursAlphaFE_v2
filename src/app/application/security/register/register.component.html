@@ -4,10 +4,24 @@
         <div class="landing-wrapper">
             <div class="row">
                 <div class="col-6 d-none d-md-block main-cols-landing">1</div>
-                <div class="col-md-6 main-cols-landing">
+                <div class="col-md-6 main-cols-register">
                     <div class="register-card">
                         <form [formGroup]="registerGroup" (ngSubmit)="register()">  
                             <h1>Register</h1>
+
+                            <div class="col-12 role-type">
+                                <div ngbDropdown>
+                                    <button type="button" class="btn btn-outline-primary role-button" id="roleDropdown" ngbDropdownToggle formControlName="role">
+                                        {{roleButtonValue}}
+                                    </button>
+                                    <div ngbDropdownMenu aria-labelledby="roleDropdown">
+                                        <button ngbDropdownItem class="role-pick" (click)="setRoleValue(1)">Employer</button>
+                                        <button ngbDropdownItem class="role-pick" (click)="setRoleValue(2)">Employee</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" formControlName="role" [value]="registerGroup.value.role"/>
+                            </div>
+
                             <div class="row register-form-row">
                                 <div class="col-6">
                                     <div class="form-floating">
@@ -65,7 +79,7 @@
 
                             <div class="register-check-wrapper">
                                 <div class="form-check">
-                                    <input type="checkbox" id="email" class="form-check-input" formControlName="termsAccepted">
+                                    <input type="checkbox" id="email" class="form-check-input" formControlName="termsAccepted" required>
                                     <label for="email" class="form-check-label">Term and conditions</label>
                                 </div>
                             </div>
@@ -84,7 +98,7 @@
 
                             <button class="btn btn-primary register-button form-group" type="submit"
                                 [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false">
-                                Submit Registration
+                                Submit Registration <u>{{ selectedRole }}</u>
                             </button>
 
                         </form>
@@ -93,17 +107,4 @@
             </div>
         </div>
     </div>
-
-    <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-        </div>
-        <div class="modal-body">
-            <p>Hello, World!</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-        </div>
-    </ng-template>
 </body> 

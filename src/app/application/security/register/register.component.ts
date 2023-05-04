@@ -16,7 +16,11 @@ export class RegisterComponent {
 
   errorMessage: string = '';
 
+  selectedRole: string = '';
+  roleButtonValue: string = 'Choose role: ';
+
   registerGroup = new FormGroup({
+    role: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
@@ -28,7 +32,8 @@ export class RegisterComponent {
   constructor(
     private validationService: ValidationService,
     private modalService: NgbModal, 
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
 
@@ -64,6 +69,20 @@ export class RegisterComponent {
       return false
     } else {
       return this.validationService.isEmailValid(email);
+    }
+  }
+
+  setRoleValue(roleId: number){
+    if(roleId === 1){
+      this.selectedRole = 'as Employer';
+      this.roleButtonValue = 'Role Chosen: Employer';
+      this.registerGroup.value.role = 'employer';
+      return 1;
+    } else{
+      this.selectedRole = 'as Employee';
+      this.roleButtonValue = 'Role Chosen: Employee';
+      this.registerGroup.value.role = 'employee';
+      return 2;
     }
   }
 

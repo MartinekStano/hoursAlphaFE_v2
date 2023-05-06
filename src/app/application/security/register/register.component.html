@@ -11,15 +11,14 @@
 
                             <div class="col-12 role-type">
                                 <div ngbDropdown>
-                                    <button type="button" class="btn btn-outline-primary role-button" id="roleDropdown" ngbDropdownToggle formControlName="role">
+                                    <button type="button" class="btn btn-outline-primary role-button" id="roleDropdown" ngbDropdownToggle>
                                         {{roleButtonValue}}
                                     </button>
-                                    <div ngbDropdownMenu aria-labelledby="roleDropdown">
-                                        <button ngbDropdownItem class="role-pick" (click)="setRoleValue(1)">Employer</button>
-                                        <button ngbDropdownItem class="role-pick" (click)="setRoleValue(2)">Employee</button>
+                                    <div ngbDropdownMenu aria-labelledby="roleDropdown" class="dropdown-role-menu">
+                                        <button ngbDropdownItem class="role-pick" (click)="selectRole($event, 'Employer')">Employer</button>
+                                        <button ngbDropdownItem class="role-pick" (click)="selectRole($event, 'Employee')">Employee</button>
                                     </div>
                                 </div>
-                                <input type="hidden" formControlName="role" [value]="registerGroup.value.role"/>
                             </div>
 
                             <div class="row register-form-row">
@@ -98,7 +97,7 @@
 
                             <button class="btn btn-primary register-button form-group" type="submit"
                                 [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false">
-                                Submit Registration <u>{{ selectedRole }}</u>
+                                Submit Registration <u> {{ roleButtonValue }}</u>
                             </button>
 
                         </form>

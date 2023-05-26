@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../service/validation.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { VerifyEmailModalComponent } from '../../popups/verify-email-modal/verify-email-modal.component';
+import { AuthService } from '../../service/auth.service';
+import { AfterRegistrationModalComponent } from '../../popups/after-registration-modal/after-registration-modal.component';
+import { catchError, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +33,8 @@ export class RegisterComponent {
   constructor(
     private validationService: ValidationService,
     private modalService: NgbModal, 
+    private authService: AuthService,
+    
   ) { }
 
   ngOnInit(): void {
@@ -42,9 +47,30 @@ export class RegisterComponent {
     this.roleButtonValue = role;
   }
 
-  register(){
-    console.log(this.registerGroup.value);
+  register() {
+    if (this.registerGroup.valid) {
+      console.log(this.registerGroup.value);
+  
+      const role = this.registerGroup.value.role ?? '';
+      const firstName = this.registerGroup.value.firstName ?? '';
+      const lastName = this.registerGroup.value.lastName ?? '';
+      const email = this.registerGroup.value.email ?? '';
+      const password = this.registerGroup.value.password ?? '';
+  
+      this.authService.register(role, firstName, lastName, email, password)
+        .pipe(
+          tap(() => this.modalService.open(AfterRegistrationModalComponent)),
+          catchError((error) => {
+            if (error.status === 401) {
+              this.errorMessage = 'User with this E-Mail already exists!';
+              console.log("User with this E-Mail already exists!");
+            }
+            return throwError(error);
+          })
+        )
+    }
   }
+  
 
   passwordsMatch(){
     if(this.registerGroup.value.password === this.registerGroup.value.passwordCheck){

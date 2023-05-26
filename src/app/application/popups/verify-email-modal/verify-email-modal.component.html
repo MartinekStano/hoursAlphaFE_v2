@@ -16,6 +16,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-danger" *ngIf="this.errorMessage"><strong>{{errorMessage}}</strong></li>
+                    <li class="list-group-item list-group-item-danger" *ngIf="this.gotThroughMessage"><strong>{{gotThroughMessage}}</strong></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>

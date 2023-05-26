@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../service/validation.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VerifyEmailModalComponent } from '../../popups/verify-email-modal/verify-email-modal.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
+import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +26,32 @@ export class LoginComponent {
   constructor(
     private validationService: ValidationService,
     private modalService: NgbModal,
+    private router: Router,
+    private authService: AuthService,
+    
   ) { }
 
-  login(){
-    console.log(this.loginGroup.value);
+  login(): void {
+    if (this.loginGroup.valid) {
+      const email = this.loginGroup.value.email ?? '';
+      const password = this.loginGroup.value.password ?? '';
+      
+      this.authService.login(email, password)
+        .pipe(
+          tap(() => this.router.navigateByUrl('/main_dashboard')),
+          catchError((error) => {
+            if (error.status === 401) {
+              this.errorMessage = 'Zlé prihlasovacie údaje';
+              console.log("Bad credentials");
+            } else if (error.status === 403) {
+              this.errorMessage = 'Účet nie je overený';
+              console.log("Account not verified");
+            }
+            return [];
+          })
+        )
+        .subscribe();
+    }
   }
 
   isEmailValidFormat(): boolean {

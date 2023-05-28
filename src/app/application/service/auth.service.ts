@@ -75,7 +75,7 @@ export class AuthService {
     this.http.post(`${BASE_URL}/noAuth/logout`, null);
   }
 
-  forgotPassword(email: string){
+  sendForgotPasswordEmail(email: string){
     const url = `${BASE_URL}/noAuth/forgotPassword`;
 
     const formData = new FormData();
@@ -94,9 +94,7 @@ export class AuthService {
     const formData = new FormData();
     formData.append('password', password);
 
-    return this.http.put(url, formData).subscribe((response: any) => {
-      console.log(response, 'response from DB when updating password');
-    });
+    return this.http.put(url, formData);
   }
 
   resendVerifyEmail(email: string): Observable<any> {

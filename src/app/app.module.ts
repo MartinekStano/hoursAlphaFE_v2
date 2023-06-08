@@ -42,6 +42,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
+import { EmployeePanelComponent } from './application/roles/employee/employee-panel/employee-panel.component';
+import { EmployerPanelComponent } from './application/roles/employer/employer-panel/employer-panel.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -53,6 +56,8 @@ import { VerifyEmailModalComponent } from './application/popups/verify-email-mod
     FooterComponent,
     HeaderComponent,
     VerifyEmailModalComponent,
+    EmployeePanelComponent,
+    EmployerPanelComponent,
     
   ],
   imports: [
@@ -92,7 +97,9 @@ import { VerifyEmailModalComponent } from './application/popups/verify-email-mod
     MatPaginatorModule,
     FormsModule, 
     ReactiveFormsModule,
-    
+    FontAwesomeModule,
+
+
     HttpClientModule,
     
   ],

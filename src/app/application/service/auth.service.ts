@@ -75,6 +75,23 @@ export class AuthService {
     this.http.post(`${BASE_URL}/noAuth/logout`, null);
   }
 
+  verifyUser(token: string) {
+
+    fetch(`${BASE_URL}/noAuth/verify/${token}`, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': "application/json; charset=utf8",
+      }),
+    })
+    .then(() => {
+      console.log('verify Success!');
+    })
+    .catch((error) => {
+      console.error('Error:' , error);
+      alert("failed to verify")
+    });
+  }
+
   sendForgotPasswordEmail(email: string){
     const url = `${BASE_URL}/noAuth/forgotPassword`;
 

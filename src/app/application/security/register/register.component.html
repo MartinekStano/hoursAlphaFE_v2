@@ -95,7 +95,7 @@
                             </div>
 
                             <button class="btn btn-primary register-button form-group" type="submit"
-                                [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false">
+                                [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false" (click)="openModal()">
                                 Submit Registration <u> {{ roleButtonValue }}</u>
                             </button>
 

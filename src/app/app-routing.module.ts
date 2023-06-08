@@ -6,6 +6,7 @@ import { RegisterComponent } from './application/security/register/register.comp
 import { ForgotPasswordResetPasswordComponent } from './application/security/securityAccountManagement/passwordManagement/forgot-password-reset-password/forgot-password-reset-password.component';
 import { ForgotPasswordSendEmailComponent } from './application/security/securityAccountManagement/passwordManagement/forgot-password-send-email/forgot-password-send-email.component';
 import { AboutComponent } from './application/main/about/about.component';
+import { EmployeePanelComponent } from './application/roles/employee/employee-panel/employee-panel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -17,6 +18,9 @@ const routes: Routes = [
   { path: 'forgotPasswordReset', component: ForgotPasswordResetPasswordComponent },
   { path: 'forgotPasswordEmail', component: ForgotPasswordSendEmailComponent },
 
+  { path: 'employer-panel', component: EmployeePanelComponent },
+  
+  { path: 'employee-panel', component: EmployeePanelComponent},
 
 ];
 

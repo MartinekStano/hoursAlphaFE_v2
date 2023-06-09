@@ -44,7 +44,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
 import { EmployeePanelComponent } from './application/roles/employee/employee-panel/employee-panel.component';
 import { EmployerPanelComponent } from './application/roles/employer/employer-panel/employer-panel.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -97,8 +96,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatPaginatorModule,
     FormsModule, 
     ReactiveFormsModule,
-    FontAwesomeModule,
-
 
     HttpClientModule,
     

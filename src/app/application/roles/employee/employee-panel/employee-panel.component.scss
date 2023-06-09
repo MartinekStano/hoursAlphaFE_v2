@@ -9,6 +9,7 @@
     box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
 
     .logo-container{
+        margin-top: 16px;
         display: flex;
         align-items: center;
         padding: 0.938rem 0.936rem 0.938rem;
@@ -95,6 +96,9 @@
     }
 }
 
-.close-icon{
-    color: white;
+.divider{
+    background-color: white;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 16px;
 }

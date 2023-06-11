@@ -26,19 +26,21 @@ const routes: Routes = [
 
   { path: 'employer-panel', component: EmployeePanelComponent },
   
-  { path: 'employee-panel', component: EmployeePanelComponent, children: [
-    { path: '', redirectTo: 'employee-dashboard', pathMatch: 'full' },
-    { path: 'employee-dashboard', component: EmployeeDashboardComponent},
-    { path: 'employee-stats', component: EmployeeStatsComponent },
-    { path: 'employee-documents', component: EmployeeDocumentsComponent },
-    { path: 'employee-calculator', component: EmployeeCalculatorComponent },
-    { path: 'employee-settings', component: EmployeeSettingsComponent },
-    { path: 'employee-profile', component: EmployeeProfileComponent },
-  ]},
-
-
-
+  {
+    path: 'employee-panel',
+    component: EmployeePanelComponent,
+    children: [
+      { path: '', redirectTo: 'employee-dashboard', pathMatch: 'full' },
+      { path: 'employee-dashboard', component: EmployeeDashboardComponent },
+      { path: 'employee-stats', component: EmployeeStatsComponent },
+      { path: 'employee-documents', component: EmployeeDocumentsComponent },
+      { path: 'employee-calculator', component: EmployeeCalculatorComponent },
+      { path: 'employee-settings', component: EmployeeSettingsComponent },
+      { path: 'employee-profile', component: EmployeeProfileComponent }
+    ]
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],

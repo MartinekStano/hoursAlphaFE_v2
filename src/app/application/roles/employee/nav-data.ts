@@ -1,31 +1,31 @@
 export const navbarData = [
     {
-        routeLink: '/employee-dashboard',
+        routeLink: 'employee-dashboard',
         icon: 'dashboard',
         label: 'Dashboard',
     },
     {
-        routerLink: '/employee-stats',
+        routeLink: 'employee-stats',
         icon: 'insert_chart_outlined',
         label: 'Stats',
     },
     {
-        routerLink: '/employee-documents',
+        routeLink: 'employee-documents',
         icon: 'folder_open',
         label: 'Documents',
     },
     {
-        routerLink: '/employee-calculator',
+        routeLink: 'employee-calculator',
         icon: 'money',
         label: 'Calculator',
     },
     {
-        routerLink: '/employee-settings',
+        routeLink: 'employee-settings',
         icon: 'settings',
         label: 'Settings',
     },
     {
-        routerLink: '/employee-profile',
+        routeLink: 'employee-profile',
         icon: 'person',
         label: 'Profile',
     },

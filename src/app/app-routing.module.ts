@@ -7,6 +7,12 @@ import { ForgotPasswordResetPasswordComponent } from './application/security/sec
 import { ForgotPasswordSendEmailComponent } from './application/security/securityAccountManagement/passwordManagement/forgot-password-send-email/forgot-password-send-email.component';
 import { AboutComponent } from './application/main/about/about.component';
 import { EmployeePanelComponent } from './application/roles/employee/employee-panel/employee-panel.component';
+import { EmployeeDashboardComponent } from './application/roles/employee/sidebar-pages/employee-dashboard/employee-dashboard.component';
+import { EmployeeStatsComponent } from './application/roles/employee/sidebar-pages/employee-stats/employee-stats.component';
+import { EmployeeDocumentsComponent } from './application/roles/employee/sidebar-pages/employee-documents/employee-documents.component';
+import { EmployeeCalculatorComponent } from './application/roles/employee/sidebar-pages/employee-calculator/employee-calculator.component';
+import { EmployeeSettingsComponent } from './application/roles/employee/sidebar-pages/employee-settings/employee-settings.component';
+import { EmployeeProfileComponent } from './application/roles/employee/sidebar-pages/employee-profile/employee-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -20,7 +26,17 @@ const routes: Routes = [
 
   { path: 'employer-panel', component: EmployeePanelComponent },
   
-  { path: 'employee-panel', component: EmployeePanelComponent},
+  { path: 'employee-panel', component: EmployeePanelComponent, children: [
+    { path: '', redirectTo: 'employee-dashboard', pathMatch: 'full' },
+    { path: 'employee-dashboard', component: EmployeeDashboardComponent},
+    { path: 'employee-stats', component: EmployeeStatsComponent },
+    { path: 'employee-documents', component: EmployeeDocumentsComponent },
+    { path: 'employee-calculator', component: EmployeeCalculatorComponent },
+    { path: 'employee-settings', component: EmployeeSettingsComponent },
+    { path: 'employee-profile', component: EmployeeProfileComponent },
+  ]},
+
+
 
 ];
 

@@ -1,11 +1,9 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
-import { navbarData } from '../nav-data';
 
-interface sideNavToggle {
+interface SideNavToggle {
   screenWidth: number;
   collapsed: boolean;
 }
-
 @Component({
   selector: 'app-employee-panel',
   templateUrl: './employee-panel.component.html',
@@ -14,31 +12,13 @@ interface sideNavToggle {
 
 export class EmployeePanelComponent {
 
-  collapsed = false;
-  screenWidth = 0;
-  navData = navbarData;
-  showCloseButton = false;
-
   constructor() { }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const sidenav = document.querySelector('.sidenav');
-    if (!sidenav?.contains(event.target as Node)) {
-      this.closeSidenav();
-    }
-  }
+  isSideNavCollapsed = false;
+  screenWidth = 0;
 
-  toggleCollapse(): void {
-    if (!this.collapsed) {
-      this.collapsed = true;
-    } else if(this.collapsed) {
-      this.collapsed = false;
-    }
-  }
-  
-
-  closeSidenav(): void {
-    this.collapsed = false;
+  onToggleSideNav(data: SideNavToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapsed;
   }
 }

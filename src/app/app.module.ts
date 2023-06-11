@@ -44,6 +44,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
 import { EmployeePanelComponent } from './application/roles/employee/employee-panel/employee-panel.component';
 import { EmployerPanelComponent } from './application/roles/employer/employer-panel/employer-panel.component';
+import { EmployeeSidenavComponent } from './application/roles/employee/employee-sidenav/employee-sidenav.component';
+import { EmployeeBodyComponent } from './application/roles/employee/employee-body/employee-body.component';
+import { EmployeeDashboardComponent } from './application/roles/employee/sidebar-pages/employee-dashboard/employee-dashboard.component';
+import { EmployeeStatsComponent } from './application/roles/employee/sidebar-pages/employee-stats/employee-stats.component';
+import { EmployeeDocumentsComponent } from './application/roles/employee/sidebar-pages/employee-documents/employee-documents.component';
+import { EmployeeCalculatorComponent } from './application/roles/employee/sidebar-pages/employee-calculator/employee-calculator.component';
+import { EmployeeSettingsComponent } from './application/roles/employee/sidebar-pages/employee-settings/employee-settings.component';
+import { EmployeeProfileComponent } from './application/roles/employee/sidebar-pages/employee-profile/employee-profile.component';
 
 
 @NgModule({
@@ -57,6 +65,14 @@ import { EmployerPanelComponent } from './application/roles/employer/employer-pa
     VerifyEmailModalComponent,
     EmployeePanelComponent,
     EmployerPanelComponent,
+    EmployeeSidenavComponent,
+    EmployeeBodyComponent,
+    EmployeeDashboardComponent,
+    EmployeeStatsComponent,
+    EmployeeDocumentsComponent,
+    EmployeeCalculatorComponent,
+    EmployeeSettingsComponent,
+    EmployeeProfileComponent,
     
   ],
   imports: [

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { navbarData } from '../nav-data';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 interface sideNavToggle {
   screenWidth: number;
@@ -9,7 +10,23 @@ interface sideNavToggle {
 @Component({
   selector: 'app-employee-sidenav',
   templateUrl: './employee-sidenav.component.html',
-  styleUrls: ['./employee-sidenav.component.scss']
+  styleUrls: ['./employee-sidenav.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+          style({ opacity: 0 }),
+        animate('350ms', 
+          style({ opacity: 1 })
+        )
+      ]),
+      transition(':leave', [
+          style({ opacity: 1 }),
+        animate('350ms',
+          style({ opacity: 0 })
+        )
+      ]),
+    ])
+  ],
 })
 export class EmployeeSidenavComponent {
 
@@ -21,6 +38,10 @@ export class EmployeeSidenavComponent {
   @Output() onToggleSideNav: EventEmitter<sideNavToggle> = new EventEmitter();
 
   constructor() { }
+
+  ngOnInit(): void {
+    
+  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {

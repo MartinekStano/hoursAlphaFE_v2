@@ -169,5 +169,44 @@ body::before {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
+  background-color: white;
+  margin: 1.25rem 0 1.25rem 0;
+  box-shadow: 0 0.25rem 0.5rem #E6EDEF;
+
+  .card-head {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #EDF1F7;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .card-body {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.heading {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 90%,
+    #EFF5F5 90%,
+    #EFF5F5 100%,
+  );
+
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position-x: right;
+
+  transition: background-size 300ms;
+  text-decoration: none;
+}
+
+.heading:hover{
+  background-size: 100% 100%;
+  background-position-x: left;
+  color: #EFF5F5;
+}

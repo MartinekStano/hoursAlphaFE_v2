@@ -1,4 +1,6 @@
-export const navbarData = [
+import { INavbarData } from "./helper";
+
+export const navbarData: INavbarData[] = [
     {
         routeLink: 'employee-dashboard',
         icon: 'dashboard',
@@ -23,6 +25,16 @@ export const navbarData = [
         routeLink: 'employee-settings',
         icon: 'settings',
         label: 'Settings',
+        items: [
+            {
+                routeLink: 'employee-settings/general-settings',
+                label: 'General Settings'
+            },
+            {
+                routeLink: 'employee-settings/account-settings',
+                label: 'Account Settings'
+            }
+        ]
     },
     {
         routeLink: 'employee-profile',

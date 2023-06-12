@@ -102,3 +102,12 @@
     margin-top: 8px;
     margin-bottom: 16px;
 }
+
+.active {
+    background-color: white;
+
+    .sidenav-link-icon,
+    .sidenav-link-text {
+        color: #263238;
+    }
+}

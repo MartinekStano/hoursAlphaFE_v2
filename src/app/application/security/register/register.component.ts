@@ -6,6 +6,7 @@ import { VerifyEmailModalComponent } from '../../popups/verify-email-modal/verif
 import { AuthService } from '../../service/auth.service';
 import { AfterRegistrationModalComponent } from '../../popups/after-registration-modal/after-registration-modal.component';
 import { catchError, tap, throwError } from 'rxjs';
+import { ModalService } from '../../service/modal.service';
 
 @Component({
   selector: 'app-register',
@@ -21,10 +22,11 @@ export class RegisterComponent {
 
   roleButtonValue = 'Select Role';
   registerGroup = new FormGroup({
-    role: new FormControl('', Validators.required),
+    // role: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     passwordCheck: new FormControl('', Validators.required),
     termsAccepted: new FormControl('', Validators.required),
@@ -32,44 +34,65 @@ export class RegisterComponent {
 
   constructor(
     private validationService: ValidationService,
-    private modalService: NgbModal, 
+    private modal: NgbModal, 
     private authService: AuthService,
+    private modalService: ModalService,
     
   ) { }
 
   ngOnInit(): void {
-
   }
 
-  selectRole(event: Event, role: string) {
-    event.preventDefault();
-    this.registerGroup.get('role')?.setValue(role);
-    this.roleButtonValue = role;
-  }
+  // selectRole(event: Event, role: string) {
+  //   event.preventDefault();
+  //   this.registerGroup.get('role')?.setValue(role);
+  //   this.roleButtonValue = role;
+  // }
 
   register() {
     if (this.registerGroup.valid) {
       console.log(this.registerGroup.value);
   
-      const role = this.registerGroup.value.role ?? '';
+      // const role = this.registerGroup.value.role ?? '';
       const firstName = this.registerGroup.value.firstName ?? '';
       const lastName = this.registerGroup.value.lastName ?? '';
       const email = this.registerGroup.value.email ?? '';
+      const phoneNumber = this.registerGroup.value.phoneNumber ?? '';
       const password = this.registerGroup.value.password ?? '';
   
-      this.authService.register(role, firstName, lastName, email, password)
-        .pipe(
-          tap(() => this.modalService.open(AfterRegistrationModalComponent)),
-          catchError((error) => {
-            if (error.status === 401) {
-              this.errorMessage = 'User with this E-Mail already exists!';
-              console.log("User with this E-Mail already exists!");
-            }
-            return throwError(error);
-          })
-        )
+      this.authService.register(firstName, lastName, email, phoneNumber, password).subscribe(
+        () => 
+        // this.modalService.openAfterRegisterModal(),
+        console.log('success'),
+        (error) => {
+          console.log('something went wrong');
+          if (error.status === 401) {
+            this.errorMessage = 'Something went wrong!';
+          }
+        }
+      );
     }
   }
+
+  // register() {
+  //   if(this.registerGroup.valid){
+  //     const firstName = this.registerGroup.value.firstName;
+  //     const lastName = this.registerGroup.value.lastName;
+  //     const email = this.registerGroup.value.email;
+  //     const password = this.registerGroup.value.password;
+  //     console.log(this.registerGroup.value);
+    
+  //     this.authService.register(firstName, lastName, email, password)  
+  //       .subscribe(
+  //         () => this.authService.showRegisterVerifyDialog(),
+  //         (error) => {
+  //           if(error.status === 401){
+  //             this.errorMessage = 'Užívateľ s týmto emailom už existuje!';
+  //             console.log("Bad credentials");
+  //           }
+  //         });
+  //   } 
+  // }
   
 
   passwordsMatch(){
@@ -102,6 +125,12 @@ export class RegisterComponent {
   }
 
   openModal() {
-		this.modalService.open(VerifyEmailModalComponent);
+		this.modal.open(VerifyEmailModalComponent);
 	}
+
+  openAfterRegisterModal() {
+    setTimeout(() => {
+      this.modalService.openAfterRegisterModal();
+    }, 3000);
+  }
 }

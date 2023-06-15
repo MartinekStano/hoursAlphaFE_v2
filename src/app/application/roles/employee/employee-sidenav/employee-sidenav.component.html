@@ -12,7 +12,7 @@
         </li>
         <mat-divider class="divider"></mat-divider>
         <li class="sidenav-item">
-            <a class="sidenav-link">
+            <a class="sidenav-link" (click)="clickOnLogOut()">
                 <mat-icon class="sidenav-link-icon">logout</mat-icon>
                 <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Logout</span>
             </a>

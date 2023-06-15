@@ -1,12 +1,12 @@
-<ng-template #content let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title">Verification E-Mail</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
-	<div class="modal-body">
-		<p>One fine body&hellip;</p>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-	</div>
-</ng-template>
+<div class="verify-modal-wrapper">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Verify Your Account!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+		<p>Open your E-Mail and click on verification link!</p>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+</div>

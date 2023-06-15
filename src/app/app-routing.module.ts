@@ -13,6 +13,8 @@ import { EmployeeDocumentsComponent } from './application/roles/employee/sidebar
 import { EmployeeCalculatorComponent } from './application/roles/employee/sidebar-pages/employee-calculator/employee-calculator.component';
 import { EmployeeSettingsComponent } from './application/roles/employee/sidebar-pages/employee-settings/employee-settings.component';
 import { EmployeeProfileComponent } from './application/roles/employee/sidebar-pages/employee-profile/employee-profile.component';
+import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
+import { AfterVerifyEmailComponent } from './application/security/securityAccountManagement/after-verify-email/after-verify-email.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -23,6 +25,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgotPasswordReset', component: ForgotPasswordResetPasswordComponent },
   { path: 'forgotPasswordEmail', component: ForgotPasswordSendEmailComponent },
+  { path: 'afterVerifyEmail/:code', component: AfterVerifyEmailComponent },
 
   { path: 'employer-panel', component: EmployeePanelComponent },
   

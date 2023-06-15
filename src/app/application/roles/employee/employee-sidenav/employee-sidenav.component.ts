@@ -1,6 +1,8 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { navbarData } from '../nav-data';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { AuthService } from 'src/app/application/service/auth.service';
+import { Router } from '@angular/router';
 
 interface sideNavToggle {
   screenWidth: number;
@@ -37,7 +39,11 @@ export class EmployeeSidenavComponent {
 
   @Output() onToggleSideNav: EventEmitter<sideNavToggle> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    
+  ) { }
 
   ngOnInit(): void {
     
@@ -59,5 +65,11 @@ export class EmployeeSidenavComponent {
   closeSidenav(): void {
     this.collapsed = false;
     this.onToggleSideNav.emit({ screenWidth: this.screenWidth, collapsed: this.collapsed });
+  }
+
+  clickOnLogOut() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    console.log("Logout");
   }
 }

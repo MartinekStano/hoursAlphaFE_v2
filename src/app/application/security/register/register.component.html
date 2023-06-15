@@ -9,7 +9,7 @@
                         <form [formGroup]="registerGroup" (ngSubmit)="register()">  
                             <h1>Register</h1>
 
-                            <div class="col-12 role-type">
+                            <!-- <div class="col-12 role-type">
                                 <div ngbDropdown>
                                     <button type="button" class="btn btn-outline-primary role-button" id="roleDropdown" ngbDropdownToggle>
                                         {{roleButtonValue}}
@@ -19,7 +19,7 @@
                                         <button ngbDropdownItem class="role-pick" (click)="selectRole($event, 'Employee')">Employee</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="row register-form-row">
                                 <div class="col-6">
@@ -43,6 +43,11 @@
                                 <ul class="list-group">
                                     <li class="list-group-item list-group-item-danger" *ngIf="isEmailValidFormat() == false">Email is <strong>Invalid!</strong></li>
                                 </ul>
+                            </div>
+
+                            <div class="form-floating email-input">
+                                <input id="phoneNumber" type="number" class="form-control" placeholder="Phone Number" formControlName="phoneNumber" required>
+                                <label for="email">Phone Number</label>
                             </div>
 
                             <div class="row gy-3">
@@ -95,7 +100,7 @@
                             </div>
 
                             <button class="btn btn-primary register-button form-group" type="submit"
-                                [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false" (click)="openModal()">
+                                [disabled]="!registerGroup.valid || passwordsMatch() == false || invalidPasswordLenght() == false || invalidPasswordFormat() == false || isEmailValidFormat() == false" (click)="openAfterRegisterModal()">
                                 Submit Registration <u> {{ roleButtonValue }}</u>
                             </button>
 

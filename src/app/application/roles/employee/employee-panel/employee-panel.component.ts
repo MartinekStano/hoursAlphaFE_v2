@@ -1,4 +1,6 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/application/service/auth.service';
 
 interface SideNavToggle {
   screenWidth: number;

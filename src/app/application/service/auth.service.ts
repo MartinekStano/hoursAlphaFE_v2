@@ -9,7 +9,7 @@ const httpOptions = {
   })
 };
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:8081';
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +23,15 @@ export class AuthService {
     private cookies: CookieService,
   ) { }
 
-  register(role: string, firstName: string, lastName: string, email: string, password: string): Observable<any> {
+  register(firstName: string, lastName: string, email: string, phoneNumber: string, password: string): Observable<any> {
     
-    console.log('authService register: ', role, firstName, lastName, email, password);
+    console.log('authService register: ', firstName, lastName, email, phoneNumber, password);
 
-    return this.http.post(`${BASE_URL}/noAuth/register`, {
-      role,
+    return this.http.post('http://localhost:8081/noAuth/register', {
       firstName,
       lastName,
       email,
+      phoneNumber,
       password,
     }, httpOptions);
   }
@@ -75,10 +75,21 @@ export class AuthService {
     this.http.post(`${BASE_URL}/noAuth/logout`, null);
   }
 
+  // verifyUser(token: string) {
+
+  //   console.log('verifyUser: ', token);
+
+  //   this.http.post(`${BASE_URL}/noAuth/verify/${token}`, null).subscribe(
+  //     () => console.log('verify Success!'),
+  //   );
+  // }
+
   verifyUser(token: string) {
 
-    fetch(`${BASE_URL}/noAuth/verify/${token}`, {
-      method: 'GET',
+    console.log('verifyUser: ', token);
+
+    fetch(`${BASE_URL}/noAuth/afterVerifyEmail/${token}`, {
+      method: 'POST',
       headers: new Headers({
         'Content-Type': "application/json; charset=utf8",
       }),

@@ -35,7 +35,7 @@
                 </div>
                 
 
-            <form class="mb-6">
+            <form class="mb-6" [formGroup]="profileDataGroup" (ngSubmit)="sendUserData()">
 
                 <div class="card shadow border-0">
                     <div class="card-body">
@@ -88,7 +88,7 @@
                           </div>
           
                           <div class="text-end">
-                              <button type="submit" class="btn btn-sm btn-success" id="settings-save-button">Save</button>
+                              <button type="submit" class="btn btn-sm btn-success" id="settings-save-button" [disabled]="!profileDataGroup.valid">Save</button>
                           </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                                     </p>
                             </div>
                             <div class="ms-auto">
-                                <button type="button" class="btn btn-md btn-danger" id="deactivate-btn">Deactivate</button>
+                                <button type="button" class="btn btn-md btn-danger" id="deactivate-btn" (click)="openDeleteAccountModal()">Deactivate</button>
                             </div>
                         </div>
                     </div>

@@ -53,6 +53,7 @@ import { EmployeeCalculatorComponent } from './application/roles/employee/sideba
 import { EmployeeSettingsComponent } from './application/roles/employee/sidebar-pages/employee-settings/employee-settings.component';
 import { EmployeeProfileComponent } from './application/roles/employee/sidebar-pages/employee-profile/employee-profile.component';
 import { AfterVerifyEmailComponent } from './application/security/securityAccountManagement/after-verify-email/after-verify-email.component';
+import { DeleteAccountModalComponent } from './application/popups/delete-account-modal/delete-account-modal.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { AfterVerifyEmailComponent } from './application/security/securityAccoun
     EmployeeSettingsComponent,
     EmployeeProfileComponent,
     AfterVerifyEmailComponent,
+    DeleteAccountModalComponent,
     
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ProfileData } from 'src/app/application/model/profileData';
 import { ModalService } from 'src/app/application/service/modal.service';
 import { ProfileService } from 'src/app/application/service/profile.service';
@@ -17,6 +18,8 @@ export class EmployeeSettingsComponent {
 
   profileData: ProfileData;
 
+  successMessage: string = '';
+
   profileDataGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -28,12 +31,14 @@ export class EmployeeSettingsComponent {
 
   changePasswordGroup = new FormGroup({
     newPassword: new FormControl('', Validators.required),
+    newPasswordRepeat: new FormControl('', Validators.required),
   });
 
   constructor(
     private profileService: ProfileService,
     private router: Router,
     private modalService: ModalService,
+    private cookies: CookieService,
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +78,58 @@ export class EmployeeSettingsComponent {
         });
       }
     );
+  }
+
+  changePassword(): void {
+    if (this.changePasswordGroup.valid) {
+      console.log(this.changePasswordGroup.value);
+  
+      const newPassword = this.changePasswordGroup.value.newPassword ?? '';
+  
+      this.profileService.changePassword(newPassword).subscribe(() => {
+        this.successMessage = 'Password changed successfully.';
+        console.log('Password changed successfully.');
+      });
+    }
+  }
+  
+
+  passwordDontMatchWithTheOldOne(): boolean {
+    const oldPassword = this.cookies.get('password');
+    const newPassword = this.changePasswordGroup.value.newPassword;
+
+    if(oldPassword !== newPassword){
+      console.log('passwords dont match');
+      return true;
+    } else if (newPassword === '' || newPassword === null){
+      return false;
+    } else {
+      return false;
+    }
+  }
+
+  passwordsMatch(){
+    if(this.changePasswordGroup.value.newPassword === this.changePasswordGroup.value.newPasswordRepeat){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  invalidPasswordLenght(): boolean {
+    const password = this.changePasswordGroup.value.newPassword;
+    return password ? password.length >= 8 : true;
+  }
+
+  invalidPasswordFormat(): boolean {
+    const password = this.changePasswordGroup.value.newPassword;
+    const numberRegex = /\d/;
+
+    return password ? numberRegex.test(password) : true;
+  }
+
+  cancelChangePassword(): void {
+    this.changePasswordGroup.reset();
   }
 
   openDeleteAccountModal(): void {

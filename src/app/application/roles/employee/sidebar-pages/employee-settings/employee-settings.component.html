@@ -101,7 +101,7 @@
                     <div class="card shadow border-0">
                       <div class="card-body">
                         <div>
-                            <form>
+                            <form [formGroup]="changePasswordGroup" (submit)="changePassword()">
                                 <h5 class="text-primary mb-2">Change Password</h5>
                                 <p class="text-sm text-muted">
                                     Once you change your password, you can only login with the new password.
@@ -111,8 +111,7 @@
                                     <div class="input-group">
                                         <div class="form-floating">
                                             <input id="password" type="password" [type]="hide ? 'password' : 'text'" class="form-control"
-                                                placeholder="Password" formControlName="password" required>
-                                            <!--[ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false}"-->
+                                                placeholder="Password" formControlName="newPassword" required [ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false || passwordDontMatchWithTheOldOne() === false}">
                                             <label for="email">New Password</label>
                                         </div>
                                 
@@ -129,7 +128,7 @@
                                     <div class="input-group">
                                         <div class="form-floating">
                                             <input id="passwordRepeat" type="password" [type]="hide2 ? 'password' : 'text'" class="form-control"
-                                                placeholder="Password Repeat" formControlName="passwordCheck" required>
+                                                placeholder="Password Repeat" formControlName="newPasswordRepeat" required [ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false || passwordDontMatchWithTheOldOne() === false}">
                                             <label for="email">New Password Repeat</label>
                                         </div>
                                 
@@ -142,10 +141,18 @@
                                     </div>
                                 </div>
 
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-danger" *ngIf="passwordsMatch() == false">Passwords <strong>don't match!</strong></li>
+                                    <li class="list-group-item list-group-item-danger" *ngIf="invalidPasswordLenght() == false">Password must be at least <strong>8 characters long!</strong></li>
+                                    <li class="list-group-item list-group-item-danger" *ngIf="invalidPasswordFormat() == false">Password must contain at least <strong>one number!</strong></li>
+                                    <li class="list-group-item list-group-item-danger" *ngIf="passwordDontMatchWithTheOldOne() == false">Old and new password<strong> Don't Match</strong></li>
+                                    <li class="list-group-item list-group-item-success" *ngIf="successMessage">{{successMessage}}</li>
+                                </ul>
+
                                 <div class="col-lg-12">
                                     <div class="d-flex justify-content-between">
-                                        <button type="submit" class="btn btn-sm btn-secondary" id="settings-change-password-cancel-btn">Cancel</button>
-                                        <button type="submit" class="btn btn-sm btn-primary" id="settings-change-password-save-btn">Save</button>
+                                        <button class="btn btn-sm btn-secondary" id="settings-change-password-cancel-btn" (click)="cancelChangePassword()">Cancel</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" id="settings-change-password-save-btn" [disabled]="!changePasswordGroup.valid || passwordsMatch() == false || invalidPasswordFormat() == false || invalidPasswordLenght() == false || passwordDontMatchWithTheOldOne() == false">Save</button>
                                     </div>
                                 </div>
                             </form>

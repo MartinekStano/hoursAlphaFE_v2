@@ -42,7 +42,7 @@ export class ProfileService {
     return this.http.delete<void>(`${BASE_URL}/deleteUser`);  
   }
 
-  resetPassword(newPassword: string): Observable<any> {
+  changePassword(newPassword: string): Observable<any> {
 
     const email = this.cookies.get('email');
     const password = this.cookies.get('password');

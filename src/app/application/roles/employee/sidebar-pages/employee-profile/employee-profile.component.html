@@ -6,27 +6,27 @@
 
                 <div class="card shadow border-0">
                     <div class="card-body">
-                        <div class="personal-data-wrapper" id="data-card">
+                        <div class="personal-data-wrapper" id="data-card" *ngIf="profileData">
                             <h2>Personal Data</h2>
     
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <strong>First Name:</strong> Jozko
+                                    <strong>First Name:</strong> {{profileData.firstName}}
                                 </li>
                                 <li class="list-group-item">
-                                    <strong>Last Name:</strong> Mrkvicka
+                                    <strong>Last Name:</strong> {{profileData.lastName}}
                                 </li>
                                 <li class="list-group-item">
-                                    <strong>Email:</strong> jozkomrkvicka@gmal.com
+                                    <strong>Email:</strong> {{profileData.email}}
                                 </li>
                                 <li class="list-group-item">
-                                    <strong>Address:</strong> 0905123456
+                                    <strong>Address:</strong> {{profileData.address}}
                                 </li>
                                 <li class="list-group-item">
-                                    <strong>ZIP:</strong> 01306
+                                    <strong>Phone Number:</strong> {{profileData.phoneNumber}}
                                 </li>
                                 <li class="list-group-item">
-                                    <strong>Password:</strong> 12345678a
+                                    <strong>ZIP:</strong> {{profileData.zip}}
                                 </li>
                             </ul>
                         </div>
@@ -47,36 +47,10 @@
 
         </div>
 
-        <div class="row company-row">
-            <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
 
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                        <div class="company-data-wrapper" id="data-card">
-                            <h2>Company Data</h2>
-    
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                <strong>Company Name:</strong> Los Pollos Hermanos
-                                </li>
-                                <li class="list-group-item">
-                                <strong>Location:</strong> Albuquerque
-                                </li>
-                                <li class="list-group-item">
-                                <strong>Contact:</strong> lospolloshemanos@gmail.com
-                                </li>
-                                <li class="list-group-item">
-                                <strong>Hourly Salary:</strong> 6.5$
-                                </li>
-                            </ul>
-    
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
+            <div class="col-md-12">
 
                 <div class="card shadow border-0">
                     <div class="card-body">

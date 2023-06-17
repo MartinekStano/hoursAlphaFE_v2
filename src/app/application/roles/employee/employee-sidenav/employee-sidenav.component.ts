@@ -70,6 +70,5 @@ export class EmployeeSidenavComponent {
   clickOnLogOut() {
     this.authService.logout();
     this.router.navigate(['/login']);
-    console.log("Logout");
   }
 }

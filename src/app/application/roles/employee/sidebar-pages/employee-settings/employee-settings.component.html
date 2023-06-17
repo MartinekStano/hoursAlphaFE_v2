@@ -1,1 +1,179 @@
-<p>employee-settings works!</p>
+<div class="d-flex flex-column flex-lg-row h-lg-full" id="background">
+
+    <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+
+      <main class="py-6 bg-surface-secondary">
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-7 mx-auto">
+              
+                <div class="mb-5">
+                    <h2 class="mb-0">Personal Information</h2>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card shadow border-0">
+                        <div class="card-body">
+                            <h5 class="mb-2">Profile Picture</h5>
+                
+                            <div class="row">
+                                <div class="col-md-6 profile-pic-container">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="profile-picture"
+                                        class="profile-pic">
+                                </div>
+                
+                                <div class="col-md-6 d-flex justify-content-end align-items-end">
+                                    <input type="file" class="form-control" id="file-input" aria-label="Upload" accept="image/*">
+                                    <label class="input-group-text btn btn-md btn-secondary ms-2 choose-file-btn" for="file-input">Choose File</label>
+                                    <button class="btn btn-md btn-primary ms-2" id="settings-upload-picture-button">Upload</button>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                
+
+            <form class="mb-6">
+
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <div class="row g-5 mb-5">
+                            <div class="col-md-6">
+                              <div class="form-floating email-input">
+                                  <input id="firstName" type="text" class="form-control" placeholder="First Name" formControlName="firstName" required>
+                                  <label for="firstName">First Name</label>
+                              </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                              <div class="form-floating email-input">
+                                  <input id="lastName" type="text" class="form-control" placeholder="Last Name" formControlName="lastName" required>
+                                  <label for="lastName">Last Name</label>
+                              </div>
+                            </div>
+                          </div>
+          
+                          <div class="row g-5 mb-5">
+          
+                            <div class="col-md-6">
+                              <div class="form-floating email-input">
+                                  <input id="email" type="email" class="form-control" placeholder="E-Mail" formControlName="email" required>
+                                  <label for="email">E-Mail</label>
+                              </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                              <div class="form-floating email-input">
+                                  <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber" required>
+                                  <label for="email">Phone Number</label>
+                              </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                              <div class="form-floating email-input">
+                                  <input id="address" type="text" class="form-control" placeholder="Address" formControlName="address" required>
+                                  <label for="email">Address</label>
+                              </div>
+                            </div>
+          
+                            <div class="col-6">
+                              <div class="form-floating email-input">
+                                  <input id="ZIP" type="text" class="form-control" placeholder="ZIP" formControlName="zip" required>
+                                  <label for="email">ZIP</label>
+                              </div>
+                            </div>
+          
+                          </div>
+          
+                          <div class="text-end">
+                              <button type="submit" class="btn btn-sm btn-success" id="settings-save-button">Save</button>
+                          </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="row g-6">
+
+                <div class="col-md-12">
+                    <div class="card shadow border-0">
+                      <div class="card-body">
+                        <div>
+                            <form>
+                                <h5 class="text-primary mb-2">Change Password</h5>
+                                <p class="text-sm text-muted">
+                                    Once you change your password, you can only login with the new password.
+                                </p>
+
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input id="password" type="password" [type]="hide ? 'password' : 'text'" class="form-control"
+                                                placeholder="Password" formControlName="password" required>
+                                            <!--[ngClass]="{'is-invalid': passwordsMatch() === false || invalidPasswordFormat() === false  || invalidPasswordLenght() === false}"-->
+                                            <label for="email">New Password</label>
+                                        </div>
+                                
+                                        <div class="input-group-text" style="height: 58px">
+                                            <button id="eye" mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon class="eye_icon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 password-repeat-container">
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input id="passwordRepeat" type="password" [type]="hide2 ? 'password' : 'text'" class="form-control"
+                                                placeholder="Password Repeat" formControlName="passwordCheck" required>
+                                            <label for="email">New Password Repeat</label>
+                                        </div>
+                                
+                                        <div class="input-group-text" style="height: 58px">
+                                            <button id="eye" mat-icon-button matSuffix type="button" (click)="hide2 = !hide2"
+                                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                                                <mat-icon class="eye_icon">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-sm btn-secondary" id="settings-change-password-cancel-btn">Cancel</button>
+                                        <button type="submit" class="btn btn-sm btn-primary" id="settings-change-password-save-btn">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="card shadow border-0">
+                        <div class="card-body d-flex align-items-center">
+                            <div>
+                                <h5 class="text-danger mb-2">Deactivate account</h5>
+                                    <p class="text-sm text-muted">
+                                        Once you delete your account, there is no going back. Please be certain.
+                                    </p>
+                            </div>
+                            <div class="ms-auto">
+                                <button type="button" class="btn btn-md btn-danger" id="deactivate-btn">Deactivate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

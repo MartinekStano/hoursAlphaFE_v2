@@ -1,0 +1,49 @@
+#picture-wrappers{
+    text-align: center;
+}
+
+#pictures{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-height: 30vh;
+}
+
+#data-card {
+    height: auto;
+    padding: 1rem;
+    background-color: white;
+}
+
+.employee-profile-wrapper{
+    margin-top: 2.5rem;
+}
+
+.company-row{
+    margin-top: 5rem;
+}
+
+.settings-wrapper{
+    text-align: center;
+}
+
+.settings-button{
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 250px;
+    border-radius: 5px;
+    color: white;
+    background-color: #263238;
+    transition: all 0.3s ease;
+    border: 1px solid #263238;
+}
+
+.settings-button:hover{
+    background-color: white;
+    border: 1px solid #263238;
+    color: #263238;
+    transition: all 0.3s ease;
+}
+
+#background{
+    background-color: #CED4DA;
+}

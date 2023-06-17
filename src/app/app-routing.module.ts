@@ -15,6 +15,7 @@ import { EmployeeSettingsComponent } from './application/roles/employee/sidebar-
 import { EmployeeProfileComponent } from './application/roles/employee/sidebar-pages/employee-profile/employee-profile.component';
 import { VerifyEmailModalComponent } from './application/popups/verify-email-modal/verify-email-modal.component';
 import { AfterVerifyEmailComponent } from './application/security/securityAccountManagement/after-verify-email/after-verify-email.component';
+import { AuthGuard } from './application/guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -31,15 +32,15 @@ const routes: Routes = [
   
   {
     path: 'employee-panel',
-    component: EmployeePanelComponent,
+    component: EmployeePanelComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'employee-dashboard', pathMatch: 'full' },
-      { path: 'employee-dashboard', component: EmployeeDashboardComponent },
-      { path: 'employee-stats', component: EmployeeStatsComponent },
-      { path: 'employee-documents', component: EmployeeDocumentsComponent },
-      { path: 'employee-calculator', component: EmployeeCalculatorComponent },
-      { path: 'employee-settings', component: EmployeeSettingsComponent },
-      { path: 'employee-profile', component: EmployeeProfileComponent }
+      { path: 'employee-dashboard', component: EmployeeDashboardComponent, canActivate: [AuthGuard] },
+      { path: 'employee-stats', component: EmployeeStatsComponent, canActivate: [AuthGuard] },
+      { path: 'employee-documents', component: EmployeeDocumentsComponent, canActivate: [AuthGuard] },
+      { path: 'employee-calculator', component: EmployeeCalculatorComponent, canActivate: [AuthGuard] },
+      { path: 'employee-settings', component: EmployeeSettingsComponent, canActivate: [AuthGuard] },
+      { path: 'employee-profile', component: EmployeeProfileComponent, canActivate: [AuthGuard] }
     ]
   },
 ];

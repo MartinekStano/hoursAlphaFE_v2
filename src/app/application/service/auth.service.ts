@@ -17,6 +17,7 @@ const BASE_URL = 'http://localhost:8081';
 export class AuthService {
 
   token: string = '';
+  logOutMessage: string = '';
 
   constructor(
     private http: HttpClient,
@@ -27,7 +28,7 @@ export class AuthService {
     
     console.log('authService register: ', firstName, lastName, email, phoneNumber, password);
 
-    return this.http.post('http://localhost:8081/noAuth/register', {
+    return this.http.post(`${BASE_URL}/noAuth/register`, {
       firstName,
       lastName,
       email,
@@ -36,26 +37,82 @@ export class AuthService {
     }, httpOptions);
   }
 
+  // login(email: string, password: string): Observable<any> {
+  //   console.log('authService login: ', email, password);
+  
+  //   const url = `${BASE_URL}/Auth/login`; 
+  
+  //   const body = {
+  //     email,
+  //     password
+  //   };
+  
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'X-Requested-With': 'XMLHttpRequest'
+  //     }),
+  //     withCredentials: true
+  //   };
+  
+  //   return this.http.post(url, body, httpOptions);
+  // }
+
   login(email: string, password: string): Observable<any> {
+    console.log('authService login: ', email, password);
+  
+    const url = 'http://localhost:8081/Auth/login'; // Replace with your login endpoint URL
+  
+    const body = {
+      email,
+      password
+    };
 
     this.cookies.set('email', email);
     this.cookies.set('password', password);
 
-    const info = btoa(`${email}:${password}`);
-    // const info = email + ':' + password;
-    const token = `Basic ${info}`;
-    const options = {
+    console.log('authService login: ', this.cookies.get('email'), this.cookies.get('password'));
+  
+    const token = `Basic ${this.b64EncodeUnicode(`${email}:${password}`)}`;
+  
+    const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: token,
-        'X-Requested-With' : 'XMLHttpRequest'
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        Authorization: token
       }),
       withCredentials: true
     };
-
-    return this.http.post(`${BASE_URL}/Auth/login`, options).pipe(
-      tap(() => this.token = token)
-    );
+  
+    return this.http.post(url, body, httpOptions);
   }
+  
+  b64EncodeUnicode(str: string): string {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+      (match, p1) => String.fromCharCode(parseInt(p1, 16))));
+  }
+
+  // login(email: string, password: string): Observable<any> {
+
+  //   this.cookies.set('email', email);
+  //   this.cookies.set('password', password);
+
+  //   console.log('authService login: ', this.cookies.get('email'), this.cookies.get('password'));
+
+  //   const info = btoa(`${email}:${password}`);
+  //   const token = `Basic ${info}`;
+  //   const options = {
+  //     headers: new HttpHeaders({
+  //       Authorization: token,
+  //       'X-Requested-With' : 'XMLHttpRequest'
+  //     }),
+  //     withCredentials: true
+  //   };
+
+  //   return this.http.post(`${BASE_URL}/Auth/login`, options).pipe(
+  //     tap(() => this.token = token)
+  //   );
+  // }
 
   isLoggedIn(): boolean {
     return !!(this.cookies.get('email') && this.cookies.get('password'));
@@ -67,40 +124,26 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    this.cookies.delete('email');
-    this.cookies.delete('password');
-    sessionStorage.clear();
+    // localStorage.removeItem('token');
+    this.token = '';
+    // this.cookies.delete('email');
+    // this.cookies.delete('password');
+    // sessionStorage.clear();
 
-    this.http.post(`${BASE_URL}/noAuth/logout`, null);
+    const logOutMessage = this.logOutMessage;
+
+    this.http.post(`${BASE_URL}/noAuth/logout`, logOutMessage).subscribe(
+      () => console.log('logout Success!'),
+    );
   }
-
-  // verifyUser(token: string) {
-
-  //   console.log('verifyUser: ', token);
-
-  //   this.http.post(`${BASE_URL}/noAuth/verify/${token}`, null).subscribe(
-  //     () => console.log('verify Success!'),
-  //   );
-  // }
 
   verifyUser(token: string) {
 
     console.log('verifyUser: ', token);
 
-    fetch(`${BASE_URL}/noAuth/afterVerifyEmail/${token}`, {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': "application/json; charset=utf8",
-      }),
-    })
-    .then(() => {
-      console.log('verify Success!');
-    })
-    .catch((error) => {
-      console.error('Error:' , error);
-      alert("failed to verify")
-    });
+    this.http.post(`${BASE_URL}/noAuth/afterVerifyEmail/${token}`, null).subscribe(
+      () => console.log('verify Success!'),
+    );
   }
 
   sendForgotPasswordEmail(email: string){

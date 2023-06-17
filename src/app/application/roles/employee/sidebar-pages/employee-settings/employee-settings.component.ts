@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeeSettingsComponent {
 
+  hide: boolean = true;
+  hide2: boolean = true;
+
+  constructor() { }
+
+  ngOnInit(): void {}
 }

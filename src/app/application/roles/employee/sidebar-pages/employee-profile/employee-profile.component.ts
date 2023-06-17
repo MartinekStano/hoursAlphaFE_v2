@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class EmployeeProfileComponent {
 
+  hide: boolean = true;
+
+  constructor() { }
+
+  ngOnInit(): void {}
 }

@@ -74,27 +74,6 @@ export class RegisterComponent {
     }
   }
 
-  // register() {
-  //   if(this.registerGroup.valid){
-  //     const firstName = this.registerGroup.value.firstName;
-  //     const lastName = this.registerGroup.value.lastName;
-  //     const email = this.registerGroup.value.email;
-  //     const password = this.registerGroup.value.password;
-  //     console.log(this.registerGroup.value);
-    
-  //     this.authService.register(firstName, lastName, email, password)  
-  //       .subscribe(
-  //         () => this.authService.showRegisterVerifyDialog(),
-  //         (error) => {
-  //           if(error.status === 401){
-  //             this.errorMessage = 'Užívateľ s týmto emailom už existuje!';
-  //             console.log("Bad credentials");
-  //           }
-  //         });
-  //   } 
-  // }
-  
-
   passwordsMatch(){
     if(this.registerGroup.value.password === this.registerGroup.value.passwordCheck){
       return true;

@@ -23,7 +23,7 @@ export class ProfileService {
     private cookies: CookieService,
   ) { }
 
-  addProfileData(firstName: string, lastName: string, email: string, phoneNumber: string, address: string, zip: string): Observable<any>{
+  addProfileData(firstName: string, lastName: string, email: string, phoneNumber: string, address: string, zip: string, hourlySalary: string): Observable<any>{
     return this.http.put(`${BASE_URL}/editUser`, {
       firstName,
       lastName,
@@ -31,6 +31,7 @@ export class ProfileService {
       phoneNumber,
       address,
       zip,
+      hourlySalary,
     }, httpOptions);
   }
 

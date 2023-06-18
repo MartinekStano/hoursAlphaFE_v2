@@ -1,0 +1,13 @@
+<div class="verify-modal-wrapper">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit your day!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>edit</p>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary ml-auto" (click)="editWorkDay()">Edit</button>
+    </div>
+</div>

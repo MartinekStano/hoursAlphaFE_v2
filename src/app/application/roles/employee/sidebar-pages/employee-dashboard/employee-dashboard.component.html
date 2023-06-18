@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="background">
 
     <div class="row">
         <div class="col-12 mt-3">
@@ -20,5 +20,52 @@
         <div class="col col-lg-2">
         </div>
 
+    </div>
+
+    <div class="row justify-content-md-center work-day-card">
+        <div class="card shadow border-0">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-4 border-right">
+                        <p>DATE: <strong>18.6.2023</strong></p>
+                    </div>
+
+                    <div class="col-md-4 border-right">
+                        <p>TIME FROM: <strong>7:00</strong></p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p>BREAK: <strong>00:30</strong></p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 border-right">
+                        <p>PLACE: <strong>TERCHOVA</strong></p>
+                    </div>
+
+                    <div class="col-md-4 border-right">
+                        <p>TIME TO: <strong>17:00</strong></p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <p>TOTAL: <strong>9.5h = 61.75€</strong></p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger mr-auto" (click)="openDeleteWorkDayModal()">Delete</button>
+                            <button type="button" class="btn btn-primary ml-auto" (click)="openEditWorkDayModal()">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

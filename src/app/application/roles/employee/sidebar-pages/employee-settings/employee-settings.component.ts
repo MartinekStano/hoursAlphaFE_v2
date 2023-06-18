@@ -27,6 +27,7 @@ export class EmployeeSettingsComponent {
     phoneNumber: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     zip: new FormControl('', Validators.required),
+    hourlySalary: new FormControl('', Validators.required),
   });
 
   changePasswordGroup = new FormGroup({
@@ -55,8 +56,9 @@ export class EmployeeSettingsComponent {
       const phoneNumber = this.profileDataGroup.value.phoneNumber ?? '';
       const address = this.profileDataGroup.value.address ?? '';
       const zip = this.profileDataGroup.value.zip ?? '';
+      const hourlySalary = this.profileDataGroup.value.hourlySalary ?? '';
 
-      this.profileService.addProfileData(firstName, lastName, email, phoneNumber, address, zip).subscribe(
+      this.profileService.addProfileData(firstName, lastName, email, phoneNumber, address, zip, hourlySalary).subscribe(
         () => {
           this.router.navigate(['/employee-profile']);
         }
@@ -99,7 +101,6 @@ export class EmployeeSettingsComponent {
     const newPassword = this.changePasswordGroup.value.newPassword;
 
     if(oldPassword !== newPassword){
-      console.log('passwords dont match');
       return true;
     } else if (newPassword === '' || newPassword === null){
       return false;

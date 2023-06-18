@@ -41,16 +41,16 @@
                     <div class="card-body">
                         <div class="row g-5 mb-5">
                             <div class="col-md-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="firstName" type="text" class="form-control" placeholder="First Name" formControlName="firstName" required>
-                                  <label for="firstName">First Name</label>
+                                  <label>First Name</label>
                               </div>
                             </div>
           
                             <div class="col-md-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="lastName" type="text" class="form-control" placeholder="Last Name" formControlName="lastName" required>
-                                  <label for="lastName">Last Name</label>
+                                  <label>Last Name</label>
                               </div>
                             </div>
                           </div>
@@ -58,38 +58,48 @@
                           <div class="row g-5 mb-5">
           
                             <div class="col-md-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="email" type="email" class="form-control" placeholder="E-Mail" formControlName="email" required>
-                                  <label for="email">E-Mail</label>
+                                  <label>E-Mail</label>
                               </div>
                             </div>
           
                             <div class="col-md-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="phoneNumber" type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNumber" required>
-                                  <label for="email">Phone Number</label>
+                                  <label>Phone Number</label>
                               </div>
                             </div>
           
                             <div class="col-md-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="address" type="text" class="form-control" placeholder="Address" formControlName="address" required>
-                                  <label for="email">Address</label>
+                                  <label>Address</label>
                               </div>
                             </div>
           
                             <div class="col-6">
-                              <div class="form-floating email-input">
+                              <div class="form-floating">
                                   <input id="ZIP" type="text" class="form-control" placeholder="ZIP" formControlName="zip" required>
-                                  <label for="email">ZIP</label>
+                                  <label>ZIP</label>
                               </div>
                             </div>
+
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    <input id="ZIP" type="number" class="form-control" placeholder="ZIP" formControlName="hourlySalary" required>
+                                    <label>Salary/Hour</label>
+                                </div>
+                            </div>
           
+                            <div class="col-md-6 save-employee-data-btn">
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-sm btn-success" id="settings-save-button" [disabled]="!profileDataGroup.valid">Save</button>
+                                </div>
+                            </div>
+
                           </div>
-          
-                          <div class="text-end">
-                              <button type="submit" class="btn btn-sm btn-success" id="settings-save-button" [disabled]="!profileDataGroup.valid">Save</button>
-                          </div>
+
                     </div>
                 </div>
 

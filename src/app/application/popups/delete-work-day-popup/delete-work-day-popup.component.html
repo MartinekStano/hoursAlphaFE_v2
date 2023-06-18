@@ -1,0 +1,13 @@
+<div class="verify-modal-wrapper">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Delete your day!</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+		<p>This action will delete your day at work permanently and all the data with it! Are you sure you want to proceed?</p>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-danger ml-auto" (click)="deleteWorkDay()">Delete day at work <strong>Permanently</strong></button>
+    </div>
+</div>

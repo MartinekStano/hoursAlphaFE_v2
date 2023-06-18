@@ -7,4 +7,5 @@ export interface ProfileData {
     phoneNumber: string;
     address: string;
     zip: string;
+    salary: number;
 }

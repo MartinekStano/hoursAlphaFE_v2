@@ -20,7 +20,7 @@ export class WorkDayService {
   ) { }
 
   addWorkDayInfo(date: string, timeFrom: string, pause: string, timeTo: string, place: string): Observable<any>{
-    return this.http.put(`${BASE_URL}/addWorkDayInfo`, {
+    return this.http.post(`${BASE_URL}/Auth/createDayRecord`, {
       date,
       timeFrom,
       pause,
@@ -28,6 +28,4 @@ export class WorkDayService {
       location,
     }, httpOptions);
   }
-
-
 }

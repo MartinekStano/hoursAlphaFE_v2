@@ -55,6 +55,8 @@ import { EmployeeProfileComponent } from './application/roles/employee/sidebar-p
 import { AfterVerifyEmailComponent } from './application/security/securityAccountManagement/after-verify-email/after-verify-email.component';
 import { DeleteAccountModalComponent } from './application/popups/delete-account-modal/delete-account-modal.component';
 import { AddHoursPopupComponent } from './application/popups/add-hours-popup/add-hours-popup.component';
+import { DeleteWorkDayPopupComponent } from './application/popups/delete-work-day-popup/delete-work-day-popup.component';
+import { EditWorkDayPopupComponent } from './application/popups/edit-work-day-popup/edit-work-day-popup.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { AddHoursPopupComponent } from './application/popups/add-hours-popup/add
     AfterVerifyEmailComponent,
     DeleteAccountModalComponent,
     AddHoursPopupComponent,
+    DeleteWorkDayPopupComponent,
+    EditWorkDayPopupComponent,
     
   ],
   imports: [

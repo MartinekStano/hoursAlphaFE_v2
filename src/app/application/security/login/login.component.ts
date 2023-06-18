@@ -39,7 +39,6 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe(
         () => {
           this.router.navigateByUrl('/employee-panel');
-          // this.router.navigateByUrl('/landing');
           console.log("Login successful");
         },
         (error) => {

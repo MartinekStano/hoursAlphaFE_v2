@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -38,67 +38,6 @@ export class AuthService {
   }
 
   // login(email: string, password: string): Observable<any> {
-  //   console.log('authService login: ', email, password);
-  
-  //   const url = `${BASE_URL}/Auth/login`; 
-  
-  //   const body = {
-  //     email,
-  //     password
-  //   };
-  
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       'X-Requested-With': 'XMLHttpRequest'
-  //     }),
-  //     withCredentials: true
-  //   };
-  
-  //   return this.http.post(url, body, httpOptions);
-  // }
-
-  login(email: string, password: string): Observable<any> {
-    console.log('authService login: ', email, password);
-  
-    const url = 'http://localhost:8081/Auth/login'; // Replace with your login endpoint URL
-  
-    const body = {
-      email,
-      password
-    };
-
-    this.cookies.set('email', email);
-    this.cookies.set('password', password);
-
-    console.log('authService login: ', this.cookies.get('email'), this.cookies.get('password'));
-  
-    const token = `Basic ${this.b64EncodeUnicode(`${email}:${password}`)}`;
-  
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        Authorization: token
-      }),
-      withCredentials: true
-    };
-  
-    return this.http.post(url, body, httpOptions);
-  }
-  
-  b64EncodeUnicode(str: string): string {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
-      (match, p1) => String.fromCharCode(parseInt(p1, 16))));
-  }
-
-  // login(email: string, password: string): Observable<any> {
-
-  //   this.cookies.set('email', email);
-  //   this.cookies.set('password', password);
-
-  //   console.log('authService login: ', this.cookies.get('email'), this.cookies.get('password'));
-
   //   const info = btoa(`${email}:${password}`);
   //   const token = `Basic ${info}`;
   //   const options = {
@@ -108,11 +47,54 @@ export class AuthService {
   //     }),
   //     withCredentials: true
   //   };
-
-  //   return this.http.post(`${BASE_URL}/Auth/login`, options).pipe(
-  //     tap(() => this.token = token)
-  //   );
+  //   return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
+  //     tap(() => {
+  //       this.token = token;
+  //     })
+  //   );    
   // }
+
+  // isLoggedIn(): boolean {
+  //     return !!localStorage.getItem('token'); 
+  // }
+
+  // getToken(): string {
+  //   return localStorage.getItem('token') || ''; 
+  // }
+
+  // logout(): Subscription {
+  //   localStorage.removeItem('token');
+  //   this.cookies.deleteAll('/');
+  //   localStorage.clear();
+  //   sessionStorage.clear();
+  //   this.cookies.delete('email');
+  //   this.cookies.delete('password');
+    
+  //   console.log('logout: ', this.getToken());
+
+  //   return this.http.post(`${BASE_URL}/Auth/logout`, {}, httpOptions).subscribe(() => {});
+  // }
+  
+
+
+  login(email: string, password: string): Observable<any> {
+
+    this.cookies.set('email', email);
+    this.cookies.set('password', password);
+
+    const info = btoa(`${email}:${password}`);
+    const token = `Basic ${info}`;
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: token,
+        'X-Requested-With' : 'XMLHttpRequest'
+      }),
+      withCredentials: true
+    };
+    return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
+      tap(() => this.token = token)
+    );    
+  }
 
   isLoggedIn(): boolean {
     return !!(this.cookies.get('email') && this.cookies.get('password'));
@@ -124,17 +106,8 @@ export class AuthService {
   }
 
   logout(): void {
-    // localStorage.removeItem('token');
-    this.token = '';
-    // this.cookies.delete('email');
-    // this.cookies.delete('password');
-    // sessionStorage.clear();
-
-    const logOutMessage = this.logOutMessage;
-
-    this.http.post(`${BASE_URL}/noAuth/logout`, logOutMessage).subscribe(
-      () => console.log('logout Success!'),
-    );
+    localStorage.removeItem('token');
+    this.cookies.deleteAll('/');
   }
 
   verifyUser(token: string) {

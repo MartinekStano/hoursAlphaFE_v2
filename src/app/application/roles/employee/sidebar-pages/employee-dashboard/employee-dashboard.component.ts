@@ -18,10 +18,6 @@ export class EmployeeDashboardComponent {
     this.modalService.openAddHoursModal();
   }
 
-  openDeleteWorkDayModal() {
-    this.modalService.openDeleteWorkDayModal();
-  }
-
   openEditWorkDayModal() {
     this.modalService.openEditWorkDayModal();
   }

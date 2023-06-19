@@ -87,28 +87,66 @@ export class AuthService {
     const options = {
       headers: new HttpHeaders({
         Authorization: token,
-        'X-Requested-With' : 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest'
       }),
       withCredentials: true
     };
     return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
-      tap(() => this.token = token)
-    );    
+      tap(() => {
+        this.token = token;
+        localStorage.setItem('token', token);
+      })
+    );
   }
-
+  
   isLoggedIn(): boolean {
-    return !!(this.cookies.get('email') && this.cookies.get('password'));
+    return !!localStorage.getItem('token');
   }
-
+  
   getToken(): string {
-    const authString = `${this.cookies.get('email')}:${this.cookies.get('password')}`;
-    return 'Basic ' + btoa(authString);
+    return localStorage.getItem('token') || '';
   }
-
+  
   logout(): void {
+    this.token = '';
     localStorage.removeItem('token');
     this.cookies.deleteAll('/');
+    this.cookies.delete('email');
+    this.cookies.delete('password');
   }
+
+  // login(email: string, password: string): Observable<any> {
+
+  //   this.cookies.set('email', email);
+  //   this.cookies.set('password', password);
+
+  //   const info = btoa(`${email}:${password}`);
+  //   const token = `Basic ${info}`;
+  //   const options = {
+  //     headers: new HttpHeaders({
+  //       Authorization: token,
+  //       'X-Requested-With' : 'XMLHttpRequest'
+  //     }),
+  //     withCredentials: true
+  //   };
+  //   return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
+  //     tap(() => this.token = token)
+  //   );    
+  // }
+
+  // isLoggedIn(): boolean {
+  //   return !!(this.cookies.get('email') && this.cookies.get('password'));
+  // }
+
+  // getToken(): string {
+  //   const authString = `${this.cookies.get('email')}:${this.cookies.get('password')}`;
+  //   return 'Basic ' + btoa(authString);
+  // }
+
+  // logout(): void {
+  //   localStorage.removeItem('token');
+  //   this.cookies.deleteAll('/');
+  // }
 
   verifyUser(token: string) {
 

@@ -36,7 +36,8 @@ export class LoginComponent {
       const email = this.loginGroup.value.email ?? '';
       const password = this.loginGroup.value.password ?? '';
 
-      this.authService.login(email, password).subscribe(
+      this.authService.login(email, password)
+      .subscribe(
         () => {
           this.router.navigateByUrl('/employee-panel');
           console.log("Login successful");

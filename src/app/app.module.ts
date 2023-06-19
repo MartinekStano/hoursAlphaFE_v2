@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule, basicRoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,6 +56,7 @@ import { AfterVerifyEmailComponent } from './application/security/securityAccoun
 import { DeleteAccountModalComponent } from './application/popups/delete-account-modal/delete-account-modal.component';
 import { AddHoursPopupComponent } from './application/popups/add-hours-popup/add-hours-popup.component';
 import { EditWorkDayPopupComponent } from './application/popups/edit-work-day-popup/edit-work-day-popup.component';
+import { AuthInterceptor } from './application/interceptor/auth.interceptor';
 
 
 @NgModule({
@@ -124,7 +125,9 @@ import { EditWorkDayPopupComponent } from './application/popups/edit-work-day-po
     HttpClientModule,
     
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

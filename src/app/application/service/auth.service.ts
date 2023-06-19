@@ -159,6 +159,7 @@ export class AuthService {
       email: email,
       password: password
     }
+    
     return this.http.post(`${BASE_URL}/Auth/login`, body, options).pipe(
       tap(() => this.token = token)
     );

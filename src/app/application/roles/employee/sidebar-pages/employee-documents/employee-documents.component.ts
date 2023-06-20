@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { jsPDF } from "jspdf";
+import { TableService } from 'src/app/application/service/table.service';
 
 @Component({
   selector: 'app-employee-documents',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class EmployeeDocumentsComponent {
 
+  constructor(
+  ) { }
+
+  generatePDF() {
+    
+  }
 }

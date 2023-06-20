@@ -57,7 +57,8 @@ import { DeleteAccountModalComponent } from './application/popups/delete-account
 import { AddHoursPopupComponent } from './application/popups/add-hours-popup/add-hours-popup.component';
 import { EditWorkDayPopupComponent } from './application/popups/edit-work-day-popup/edit-work-day-popup.component';
 import { AuthInterceptor } from './application/interceptor/auth.interceptor';
-
+import { ChartModule } from 'angular-highcharts';
+// import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,8 @@ import { AuthInterceptor } from './application/interceptor/auth.interceptor';
     MatPaginatorModule,
     FormsModule, 
     ReactiveFormsModule,
+    ChartModule,
+    // HighchartsChartModule,
 
     HttpClientModule,
     

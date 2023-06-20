@@ -8,7 +8,7 @@
         <div class="col-md-4">
             <div class="card shadow border-0">
                 <div class="card-body">
-                    <div class="pie">
+                    <div class="pie" [chart]="pieChart">
 
                     </div>
                 </div>
@@ -17,11 +17,26 @@
         <div class="col-md-8">
             <div class="card shadow border-0">
                 <div class="card-body">
-                    <div class="line">
+                    <div class="line" [chart]="lineChart">
                         
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="row">
+        <div class="col-md-7">
+            <div class="card shadow border-0">
+                <div class="card-body" [chart]="areaChart">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card shadow border-0">
+                <div class="card-body" [chart]="columnChart">
+
+                </div>
+            </div>
+        </div>
+    </div> -->
 </div>

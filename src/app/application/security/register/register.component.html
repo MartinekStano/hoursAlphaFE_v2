@@ -3,8 +3,30 @@
     <div class="container">
         <div class="landing-wrapper">
             <div class="row">
-                <div class="col-6 d-none d-md-block main-cols-landing">1</div>
-                <div class="col-md-6 main-cols-register">
+                <div class="col-6 main-cols-landing d-flex flex-column justify-content-center align-items-center">
+
+                    <div class="row mb-3">
+                        <div class="col-12 d-flex justify-content-center">
+                            <img class="e-icon-login" src="../../../../assets/images/folder.png" alt="folder">
+                        </div>
+                    </div>
+
+                    <div class="row mb-0">
+                        <div class="col-12 --second-column-login">
+                            <h1 class="e-title-login">Welcome to Hours Alpha!</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p>Manage your working hours with HoursAlpha. The app includes many features such as a calculator, hours overview, export and charts</p>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6 main-cols-register d-flex flex-column justify-content-center align-items-center">
                     <div class="register-card">
                         <form [formGroup]="registerGroup" (ngSubmit)="register()">  
                             <h1>Register</h1>

@@ -1,37 +1,39 @@
-<div class="container" id="background">
-    <div class="row">
+<div class="container-fluid" id="background">
+    <div class="row ms-5 me-5">
         <div class="col-12 mt-3">
             <h2>Calculator</h2>
         </div>
     </div>
 
-    <div class="row justify-content-md-center">
-        <div class="card shadow border-0" *ngIf="workMonth">
-            <div class="card-body">
-                <div class="row">
-
-                    <div class="col-md-3 border-right mt-3">
-                        <p>CURRENT MONTH: <strong>{{workMonth.month}}</strong></p>
+    <div class="row ms-5 me-5">
+        <div class="col-12">
+            <div class="card shadow border-0" *ngIf="workMonth">
+                <div class="card-body">
+                    <div class="row">
+    
+                        <div class="col-md-3 border-right mt-3">
+                            <p>CURRENT MONTH: <strong>{{workMonth.month}}</strong></p>
+                        </div>
+    
+                        <div class="col-md-3 border-right mt-3">
+                            <p>TOTAL HOURS: <strong>{{workMonth.totalHours}}</strong></p>
+                        </div>
+    
+                        <div class="col-md-3 border-right mt-3">
+                            <p>TOTAL SALARY: <strong>{{workMonth.totalSalary}} €</strong></p>
+                        </div>
+    
+                        <div class="col-md-3 mt-3">
+                            <p>CLEAR SALARY: <strong>{{workMonth.clearSalary}} €</strong></p>
+                        </div>
+    
                     </div>
-
-                    <div class="col-md-3 border-right mt-3">
-                        <p>TOTAL HOURS: <strong>{{workMonth.totalHours}}</strong></p>
-                    </div>
-
-                    <div class="col-md-3 border-right mt-3">
-                        <p>TOTAL SALARY: <strong>{{workMonth.totalSalary}} €</strong></p>
-                    </div>
-
-                    <div class="col-md-3 mt-3">
-                        <p>CLEAR SALARY: <strong>{{workMonth.clearSalary}} €</strong></p>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row gy-3">
+    <div class="row gy-3 ms-5 me-5">
         <div class="col-md-4">
             <div class="card shadow border-0 calculator-card">
                 <div class="card-body">

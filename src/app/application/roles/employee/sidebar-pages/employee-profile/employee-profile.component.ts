@@ -9,8 +9,6 @@ import { ProfileService } from 'src/app/application/service/profile.service';
 })
 export class EmployeeProfileComponent {
 
-  hide: boolean = true;
-
   profileData: ProfileData;
 
   constructor(
@@ -18,7 +16,9 @@ export class EmployeeProfileComponent {
 
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserData();
+  }
 
   getUserData(): void {
     this.profileService.getProfileData().subscribe(

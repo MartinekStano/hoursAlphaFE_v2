@@ -43,7 +43,7 @@ export class ForgotPasswordResetPasswordComponent {
 
     this.authService.resetPassword(password, this.verificationToken).subscribe(() => {
       console.log('resetPassword success');
-      this.router.navigateByUrl('/main_dashboard');
+      this.router.navigateByUrl('/login');
     },
     (error) => {
       if(error == 401) {

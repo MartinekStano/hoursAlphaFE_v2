@@ -16,18 +16,17 @@ export class EmployeeSettingsComponent {
   hide: boolean = true;
   hide2: boolean = true;
 
-  profileData: ProfileData;
+  profileData: ProfileData; 
 
   successMessage: string = '';
 
   profileDataGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     zip: new FormControl('', Validators.required),
-    hourlySalary: new FormControl('', Validators.required),
+    salary: new FormControl(0, Validators.required),
   });
 
   changePasswordGroup = new FormGroup({
@@ -52,15 +51,14 @@ export class EmployeeSettingsComponent {
 
       const firstName = this.profileDataGroup.value.firstName ?? '';
       const lastName = this.profileDataGroup.value.lastName ?? '';
-      const email = this.profileDataGroup.value.email ?? '';
       const phoneNumber = this.profileDataGroup.value.phoneNumber ?? '';
       const address = this.profileDataGroup.value.address ?? '';
       const zip = this.profileDataGroup.value.zip ?? '';
-      const hourlySalary = this.profileDataGroup.value.hourlySalary ?? '';
+      const salary = this.profileDataGroup.value.salary ?? 0;
 
-      this.profileService.addProfileData(firstName, lastName, email, phoneNumber, address, zip, hourlySalary).subscribe(
+      this.profileService.addProfileData(firstName, lastName, phoneNumber, address, zip, salary).subscribe(
         () => {
-          this.router.navigate(['/employee-profile']);
+          this.router.navigate(['/employee-panel/employee-profile']);
         }
       );
     }
@@ -73,10 +71,10 @@ export class EmployeeSettingsComponent {
         this.profileDataGroup.patchValue({
           firstName: response.firstName,
           lastName: response.lastName,
-          email: response.email,
           phoneNumber: response.phoneNumber,
           address: response.address,
           zip: response.zip,
+          salary: response.salary,
         });
       }
     );

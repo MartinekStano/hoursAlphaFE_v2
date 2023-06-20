@@ -23,20 +23,19 @@ export class ProfileService {
     private cookies: CookieService,
   ) { }
 
-  addProfileData(firstName: string, lastName: string, email: string, phoneNumber: string, address: string, zip: string, hourlySalary: string): Observable<any>{
-    return this.http.put(`${BASE_URL}/editUser`, {
+  addProfileData(firstName: string, lastName: string, phoneNumber: string, address: string, zip: string, salary: number): Observable<any>{
+    return this.http.put(`${BASE_URL}/Auth/updateEmployeeProfile`, {
       firstName,
       lastName,
-      email,
       phoneNumber,
       address,
       zip,
-      hourlySalary,
+      salary,
     }, httpOptions);
   }
 
   getProfileData(): Observable<ProfileData>{
-    return this.http.get<ProfileData>(`${BASE_URL}/getUserDetails`); 
+    return this.http.get<ProfileData>(`${BASE_URL}/Auth/employeeDetails`); 
   }
 
   deleteUser(): Observable<void>{

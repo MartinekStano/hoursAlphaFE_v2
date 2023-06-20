@@ -42,14 +42,16 @@ export class ProfileService {
     return this.http.delete<void>(`${BASE_URL}/deleteUser`);  
   }
 
-  changePassword(newPassword: string): Observable<any> {
+  changePassword(password: string): Observable<any> {
+
+    const newPassword = password;
 
     const email = this.cookies.get('email');
-    const password = this.cookies.get('password');
+    const passwordToken = this.cookies.get('password');
 
-    console.log(email, password);
+    console.log(email, passwordToken);
 
-    const info = btoa(`${email}:${password}`);
+    const info = btoa(`${email}:${passwordToken}`);
     const token = `Basic ${info}`;
     const options = {
       headers: new HttpHeaders({
@@ -59,11 +61,7 @@ export class ProfileService {
       withCredentials: true
     };
   
-    const url = `${BASE_URL}/resetPassword`;
   
-    const formData = new FormData();
-    formData.append('newPassword', newPassword);
-  
-    return this.http.put(url, formData, options); 
+    return this.http.put(`${BASE_URL}/Auth/resetPassword/${newPassword}`, options); // Use updated authorization token in the API request
   }
 }

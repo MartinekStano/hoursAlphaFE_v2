@@ -2,8 +2,9 @@ export interface workDay {
     id: number;
     date: string;
     timeFrom: string;
-    lunchTime: string;
+    pause: string;
     timeTo: string;
-    location: string;
-    hourlySalary: string;
+    place: string;
+    totalSalary: number;
+    totalHours: number;
 }

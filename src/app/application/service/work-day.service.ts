@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { workDay } from '../model/workDay';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -25,7 +26,11 @@ export class WorkDayService {
       timeFrom,
       pause,
       timeTo,
-      location,
+      place,
     }, httpOptions);
+  }
+
+  getAllWorkingDays(): Observable<workDay[]>{
+    return this.http.get<workDay[]>(`${BASE_URL}/Auth/getAllDayRecords`);
   }
 }

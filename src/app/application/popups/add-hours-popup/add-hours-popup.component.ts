@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { WorkDayService } from '../../service/work-day.service';
+import { RefreshService } from '../../service/refresh.service';
 
 @Component({
   selector: 'app-add-hours-popup',
@@ -21,6 +22,7 @@ export class AddHoursPopupComponent {
     public activeModal: NgbActiveModal,
     private calendar: NgbCalendar,
     private workDayService: WorkDayService,
+    private refreshService: RefreshService,
   ) { }
 
   ngOnInit(): void {}
@@ -36,18 +38,27 @@ export class AddHoursPopupComponent {
     const month = this.model.month.toString().padStart(2, '0');  // Add leading zero if necessary
     const day = this.model.day.toString().padStart(2, '0');  // Add leading zero if necessary
   
-    const date = `${year}-${month}-${day}`;
+    const date = `${day}-${month}-${year}`;
   
     const timeFromStr = `${this.timeFrom.hour.toString().padStart(2, '0')}:${this.timeFrom.minute.toString().padStart(2, '0')}`;  // Add leading zeros if necessary
     const lunchTimeStr = `${this.lunchTime.hour.toString().padStart(2, '0')}:${this.lunchTime.minute.toString().padStart(2, '0')}`;  // Add leading zeros if necessary
     const timeToStr = `${this.timeTo.hour.toString().padStart(2, '0')}:${this.timeTo.minute.toString().padStart(2, '0')}`;  // Add leading zeros if necessary
-    const location = this.location;
+    const place = this.location;
   
-    console.log('after parse: ', date, timeFromStr, lunchTimeStr, timeToStr, location);
+    console.log('after parse: ', date, timeFromStr, lunchTimeStr, timeToStr, place);
   
-    return this.workDayService.addWorkDayInfo(date, timeFromStr, lunchTimeStr, timeToStr, location).subscribe(() => {
+    return this.workDayService.addWorkDayInfo(date, timeFromStr, lunchTimeStr, timeToStr, place).subscribe(() => {
       this.activeModal.close();
       console.log('Work day info added');
+      this.refreshService.refresh(); // Emit the refresh event
     });
+  }
+
+  disableAddButton() {
+    if(this.model && this.timeFrom && this.timeTo && this.lunchTime && this.location) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

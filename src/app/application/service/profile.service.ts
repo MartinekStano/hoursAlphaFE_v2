@@ -39,7 +39,7 @@ export class ProfileService {
   }
 
   deleteUser(): Observable<void>{
-    return this.http.delete<void>(`${BASE_URL}/deleteUser`);  
+    return this.http.delete<void>(`${BASE_URL}/Auth/deleteAccount`);  
   }
 
   changePassword(password: string): Observable<any> {

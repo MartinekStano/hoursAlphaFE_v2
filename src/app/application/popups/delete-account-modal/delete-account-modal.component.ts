@@ -20,8 +20,10 @@ export class DeleteAccountModalComponent {
 
   deleteUser(){
     this.profileService.deleteUser()
-      .subscribe(() => 
-        this.router.navigateByUrl('/login'),
-      );
+      .subscribe(() => {
+        this.activeModal.close();     
+        this.router.navigateByUrl('/login');
+      }
+    );
   }
 }

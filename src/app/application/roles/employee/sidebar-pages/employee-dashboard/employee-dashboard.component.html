@@ -8,35 +8,31 @@
 
     <div class="row justify-content-md-center">
 
-        <div class="col col-lg-2">
-        </div>
-
-        <div class="col-md-auto">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             <button class="btn btn-primary add-hours-btn" (click)="openAddHoursModal()">
                 +
             </button>
         </div>
-
-        <div class="col col-lg-2">
-        </div>
+        <div class="col-md-4"></div>
 
     </div>
 
-    <div class="row justify-content-md-center work-day-card">
+    <div class="row justify-content-md-center work-day-card" *ngFor="let workDay of allWorkDays">
         <div class="card shadow border-0">
             <div class="card-body">
                 <div class="row">
 
                     <div class="col-md-4 border-right">
-                        <p>DATE: <strong>18.6.2023</strong></p>
+                        <p>DATE: <strong>{{workDay.date}}</strong></p>
                     </div>
 
                     <div class="col-md-4 border-right">
-                        <p>TIME FROM: <strong>7:00</strong></p>
+                        <p>TIME FROM: <strong>{{workDay.timeFrom}}</strong></p>
                     </div>
 
                     <div class="col-md-4">
-                        <p>BREAK: <strong>00:30</strong></p>
+                        <p>BREAK: <strong>{{workDay.pause}}</strong></p>
                     </div>
 
                 </div>
@@ -44,15 +40,15 @@
                 <div class="row">
 
                     <div class="col-md-4 border-right">
-                        <p>PLACE: <strong>TERCHOVA</strong></p>
+                        <p>PLACE: <strong>{{workDay.place}}</strong></p>
                     </div>
 
                     <div class="col-md-4 border-right">
-                        <p>TIME TO: <strong>17:00</strong></p>
+                        <p>TIME TO: <strong>{{workDay.timeTo}}</strong></p>
                     </div>
 
                     <div class="col-md-4">
-                        <p>TOTAL: <strong>9.5h = 61.75€</strong></p>
+                        <p>TOTAL: <strong>{{workDay.totalHours}}h = {{workDay.totalSalary}}€</strong></p>
                     </div>
 
                 </div>

@@ -73,6 +73,7 @@ export class AuthService {
 
   logout(): void {
     this.token = '';
+    this.cookies.deleteAll();
   }
 
   verifyUser(token: string) {
@@ -85,16 +86,11 @@ export class AuthService {
   }
 
   sendForgotPasswordEmail(email: string){
-    const url = `${BASE_URL}/noAuth/forgotPassword`;
-
-    const formData = new FormData();
-    formData.append('email', email);
-
-    return this.http.post(url, formData);
+    return this.http.post(`${BASE_URL}/noAuth/sendResetPasswordEmail/${email}`, httpOptions);
   }
 
   resetPassword(password: string, verificationToken: string){
-    const url = `${BASE_URL}/noAuth/resetPasswordViaVerification/${verificationToken}`;
+    const url = `${BASE_URL}/noAuth/resetPassword/${verificationToken}`;
 
     this.cookies.set('password', password);
     const info = btoa(`${this.cookies.get('email')}:${password}`);
@@ -102,13 +98,12 @@ export class AuthService {
 
     const formData = new FormData();
     formData.append('password', password);
+    //RequestParam equals formData
 
     return this.http.put(url, formData);
   }
 
   resendVerifyEmail(email: string): Observable<any> {
-    return this.http.post(`${BASE_URL}/noAuth/resendVerificationEmail`, {
-      email,
-    }, httpOptions);
+    return this.http.post(`${BASE_URL}/noAuth/resendVerificationEmail/${email}`, httpOptions);
   }
 }

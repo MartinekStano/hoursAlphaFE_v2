@@ -61,9 +61,10 @@ export class RegisterComponent {
       const password = this.registerGroup.value.password ?? '';
   
       this.authService.register(firstName, lastName, email, phoneNumber, password).subscribe(
-        () => 
-        // this.modalService.openAfterRegisterModal(),
-        console.log('success'),
+        () => {
+          this.modalService.openAfterRegisterModal();
+          console.log('success');
+        },
         (error) => {
           console.log('something went wrong');
           if (error.status === 401) {
@@ -106,10 +107,4 @@ export class RegisterComponent {
   openModal() {
 		this.modal.open(VerifyEmailModalComponent);
 	}
-
-  openAfterRegisterModal() {
-    setTimeout(() => {
-      this.modalService.openAfterRegisterModal();
-    }, 3000);
-  }
 }

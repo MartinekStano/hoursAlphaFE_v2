@@ -6,6 +6,8 @@
     height: auto;
     padding: 1rem;
     text-align: center;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .login-form-row{
@@ -22,11 +24,6 @@
     padding: 1rem;
 }
 
-[class*="col"] {
-    // background-color: rgb(180, 255, 196);
-    // border: 1px solid rgb(255, 133, 133);
-}
-
 .--second-column-login {
     width: 100%;
     padding: 15px;
@@ -39,10 +36,14 @@
     font-size: 35px;
     font-weight: 400;
     margin-bottom: 1rem;
-    font-style: italic;
 }
 
 .e-icon-login {
     max-width: 100px;
     max-height: 100px;
+}
+
+#background{
+    height: 100vh;
+    background-color: #CED4DA;
 }

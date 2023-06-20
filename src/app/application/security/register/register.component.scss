@@ -7,6 +7,7 @@
     padding: 1rem;
     text-align: center;
     background-color: white;
+    border-radius: 5px;
 }
   
 .email-input{
@@ -61,4 +62,9 @@
 .e-icon-login {
     max-width: 100px;
     max-height: 100px;
+}
+
+#background{
+    height: 100vh;
+    background-color: #CED4DA;
 }

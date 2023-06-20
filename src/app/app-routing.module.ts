@@ -17,7 +17,7 @@ import { AfterVerifyEmailComponent } from './application/security/securityAccoun
 import { AuthGuard } from './application/guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'landing', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },  
   { path: 'about', component: AboutComponent },
 

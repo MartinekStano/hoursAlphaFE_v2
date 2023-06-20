@@ -9,7 +9,7 @@ const httpOptions = {
   })
 };
 
-const BASE_URL = 'https://hours-alpha.herokuapp.com';
+const BASE_URL = 'https://hours-alpha-7e10789ba85b.herokuapp.com';
 
 @Injectable({
   providedIn: 'root'

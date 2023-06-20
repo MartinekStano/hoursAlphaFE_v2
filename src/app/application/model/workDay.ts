@@ -7,4 +7,6 @@ export interface workDay {
     place: string;
     totalSalary: number;
     totalHours: number;
+    month: string;
+    clearSalary: number;
 }

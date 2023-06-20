@@ -1,0 +1,27 @@
+#background{
+    min-height: 100vh;
+    background-color: #CED4DA;
+}
+
+.border-right {
+    border-right: 1px solid #ddd;
+}
+
+.calculate-btn{
+    width: 100%;
+    background-color: #263238;
+    color: white;
+    border: 1px solid #263238;
+    transition: all 0.3s ease;
+    margin-top: 105px;
+}
+
+.calculate-btn:hover{
+    background-color: white;
+    color: #263238;
+    transition: all 0.3s ease;
+}
+
+.calculator-card{
+    height: 100%;
+}

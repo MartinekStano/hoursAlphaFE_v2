@@ -1,1 +1,98 @@
-<p>employee-calculator works!</p>
+<div class="container" id="background">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <h2>Calculator</h2>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="card shadow border-0" *ngIf="workMonth">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-3 border-right mt-3">
+                        <p>CURRENT MONTH: <strong>{{workMonth.month}}</strong></p>
+                    </div>
+
+                    <div class="col-md-3 border-right mt-3">
+                        <p>TOTAL HOURS: <strong>{{workMonth.totalHours}}</strong></p>
+                    </div>
+
+                    <div class="col-md-3 border-right mt-3">
+                        <p>TOTAL SALARY: <strong>{{workMonth.totalSalary}} €</strong></p>
+                    </div>
+
+                    <div class="col-md-3 mt-3">
+                        <p>CLEAR SALARY: <strong>{{workMonth.clearSalary}} €</strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row gy-3">
+        <div class="col-md-4">
+            <div class="card shadow border-0 calculator-card">
+                <div class="card-body">
+                    <form [formGroup]="calculatorGroup" (ngSubmit)="calculateSalary()">
+                        <p><strong>CALCULATE YOUR SALARY</strong></p>
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input id="salary" type="number" class="form-control" placeholder="Worked Hours" formControlName="hours" required>
+                                <label>Worked Hours</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group form-floating mt-3">
+                            <input type="number" class="form-control" placeholder="Salary/Hour" formControlName="salary" aria-label="Amount (to the nearest dollar)" required>
+                            <label>Salary/Hour</label>
+                            <div class="input-group-append">
+                              <span class="input-group-text" style="height: 58px;">€</span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <button class="btn btn-primary calculate-btn" type="submit" [disabled]="!calculatorGroup.valid">
+                                Calculate
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow border-0 calculator-card">
+                <div class="card-body" *ngIf="calculatorResult">
+                    <p><strong>RESULT</strong></p>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>SALARY PER HOUR:</strong> {{calculatorResult.salaryPerHour}} €
+                        </li>
+                        <li class="list-group-item">
+                            <strong>TOTAL HOURS:</strong> {{calculatorResult.totalHours}} 
+                        </li>
+                        <li class="list-group-item">
+                            <strong>TOTAL SALARY:</strong> {{calculatorResult.totalSalary}} €
+                        </li>
+                        <li class="list-group-item">
+                            <strong>CLEAR SALARY:</strong> {{calculatorResult.clearSalary}} €
+                        </li>
+                        <li class="list-group-item">
+                            <strong>SUPER TOTAL SALARY:</strong> {{calculatorResult.superTotalSalary}} € 
+                        </li>
+                        <li class="list-group-item">
+                            <strong>LEVIES:</strong> {{calculatorResult.levies}} €
+                        </li>
+                        <li class="list-group-item">
+                            <strong>TAX:</strong> {{calculatorResult.tax}} €
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

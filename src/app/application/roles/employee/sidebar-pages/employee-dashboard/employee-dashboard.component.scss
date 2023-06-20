@@ -26,3 +26,17 @@
     min-height: 100vh;
     background-color: #CED4DA;
 }
+
+.edit-btn{
+    background-color: #0275d8;
+    color: white;
+    border: 1px solid #0275d8;
+    transition: all 0.3s ease;
+    width: 160px;
+}
+
+.edit-btn:hover{
+    background-color: white;
+    color: #0275d8;
+    transition: all 0.3s ease;
+}

@@ -4,7 +4,35 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p>edit</p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Start</p>
+                        <ngb-timepicker [(ngModel)]="timeFrom"></ngb-timepicker>
+                        <hr/><br>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Lunch</p>
+                        <ngb-timepicker [(ngModel)]="lunchTime"></ngb-timepicker>
+                        <hr/><br>
+                    </div>
+                    <div class="col-md-4">
+                        <p>End</p>
+                        <ngb-timepicker [(ngModel)]="timeTo"></ngb-timepicker>
+                        <hr/><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="Location" [(ngModel)]="location" required>
+                            <label for="lastName">Location</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary mr-auto" (click)="activeModal.close('Close click')">Close</button>

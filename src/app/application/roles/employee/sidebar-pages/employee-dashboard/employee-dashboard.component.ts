@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { workDay } from 'src/app/application/model/workDay';
+import { EditWorkDayPopupComponent } from 'src/app/application/popups/edit-work-day-popup/edit-work-day-popup.component';
 import { ModalService } from 'src/app/application/service/modal.service';
 import { RefreshService } from 'src/app/application/service/refresh.service';
 import { WorkDayService } from 'src/app/application/service/work-day.service';
@@ -20,6 +22,7 @@ export class EmployeeDashboardComponent {
     private modalService: ModalService,
     private workDayService: WorkDayService,
     private refreshService: RefreshService,
+    private modal: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -40,8 +43,9 @@ export class EmployeeDashboardComponent {
     this.modalService.openAddHoursModal();
   }
 
-  openEditWorkDayModal() {
-    this.modalService.openEditWorkDayModal();
+  openEditWorkDayModal(workDayToEdit: any) {
+    const modalRef = this.modal.open(EditWorkDayPopupComponent, { size: 'xl' });
+    modalRef.componentInstance.workDay = workDayToEdit; // Here is where you pass the data to the modal
   }
 
   public getAllWorkingDays(): void{

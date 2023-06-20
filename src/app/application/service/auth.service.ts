@@ -37,114 +37,20 @@ export class AuthService {
     }, httpOptions);
   }
 
-  // login(email: string, password: string): Observable<any> {
-  //   this.cookies.set('email', email);
-  //   this.cookies.set('password', password);
-  
-  //   const info = btoa(`${email}:${password}`);
-  //   const token = `Basic ${info}`;
-  //   const headers = new HttpHeaders({
-  //     Authorization: token,
-  //     'X-Requested-With' : 'XMLHttpRequest'
-  //   });
-  
-  //   const options = { headers: headers, withCredentials: true };
-  
-  //   return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
-  //     tap(() => this.token = token)
-  //   );
-  // }
-  
-
-  // login(email: string, password: string): Observable<any> {
-  //   this.cookies.set('email', email);
-  //   this.cookies.set('password', password);
-  
-  //   const emailSend = email;
-  //   const passwordSend = password;
-  
-  //   const info = btoa(`${email}:${password}`);
-  //   const token = `Basic ${info}`;
-  //   const headers = new HttpHeaders({
-  //     Authorization: token,
-  //     'X-Requested-With': 'XMLHttpRequest'
-  //   });
-  
-  //   const body = {
-  //     email: emailSend,
-  //     password: passwordSend
-  //   };
-  
-  //   const options = {
-  //     headers: headers,
-  //     withCredentials: true,
-  //   };
-
-  //   console.log('authService login: ', email, password, body, options)
-  
-  //   return this.http.post(`${BASE_URL}/Auth/login`, body, options).pipe(
-  //     tap(() => this.token = token)
-  //   );
-  // }
-  
-
-  // login(email: string, password: string): Observable<any> {
-
-  //   this.cookies.set('email', email);
-  //   this.cookies.set('password', password);
-
-  //   const emailSend = email;
-  //   const passwordSend = password;
-
-  //   const info = btoa(`${email}:${password}`);
-  //   const token = `Basic ${info}`;
-  //   const options = {
-  //     headers: new HttpHeaders({
-  //       Authorization: token,
-  //       'X-Requested-With' : 'XMLHttpRequest'
-  //     }),
-  //     withCredentials: true
-  //   };
-
-  //   return this.http.post(`${BASE_URL}/Auth/login`, {}, options).pipe(
-  //     tap(() => this.token = token)
-  //   );
-  // }
-
-  // isLoggedIn(): boolean {
-  //   return !!(this.cookies.get('email') && this.cookies.get('password'));
-  // }
-
-  // getToken(): string {
-  //   return this.token;
-  // }
-
-  // logout(): void {
-  //   console.log('before clear:', this.token);
-  //   this.token = '';
-  //   console.log('after clear:', this.token);
-  //   console.log('----------------------');
-  //   console.log('before clear:', this.cookies.get('email'));
-  //   this.cookies.delete('email');
-  //   console.log('after clear:', this.cookies.get('email'));
-  //   console.log('----------------------');
-  //   console.log('before clear:', this.cookies.get('password'));
-  //   this.cookies.delete('password');
-  //   console.log('after clear:', this.cookies.get('password'));
-  //   sessionStorage.clear();
-
-  //   this.http.post(`${BASE_URL}/noAuth/logout`, null).subscribe(() => console.log('logout success!'));
-  // }
-
   getToken(): string {
-    return this.token;
+    const authString = `${this.cookies.get('email')}:${this.cookies.get('password')}`;
+    return 'Basic ' + btoa(authString);
   }
 
   isLoggedIn(): boolean {
-    return !!this.token;
+    return !!(this.cookies.get('email') && this.cookies.get('password'));
   }
 
   login(email: string, password: string): Observable<any> {
+
+    this.cookies.set('email', email);
+    this.cookies.set('password', password);
+
     const info = btoa(`${email}:${password}`);
     const token = `Basic ${info}`;
     const options = {
@@ -201,7 +107,8 @@ export class AuthService {
   }
 
   resendVerifyEmail(email: string): Observable<any> {
-    return this.http.post(`${BASE_URL}/noAuth/resendVerifyEmail/${email}`, {
+    return this.http.post(`${BASE_URL}/noAuth/resendVerificationEmail`, {
+      email,
     }, httpOptions);
   }
 }

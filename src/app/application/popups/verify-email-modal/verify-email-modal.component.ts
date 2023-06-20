@@ -22,22 +22,15 @@ export class VerifyEmailModalComponent {
   ) {  }
 
   sendEmail(){
-    if(this.email !== ''){
-      
-      this.authService.resendVerifyEmail(this.email).pipe(
-        tap(() => {
-          this.activeModal.close();
-          this.gotThroughMessage = 'We have sent an E-Mail to verify your account to your address!';
-        }),
-        catchError((error) => {
-          if (error.status === 401) {
-            this.errorMessage = 'E-Mail does not exist!';
-            console.log("Email does not exist");
-          }
-          return [];
-        })
-      );
-    }    
+    const verifyEmail = this.email;
+    console.log('verifyEmail: ', verifyEmail);
+
+    return this.authService.resendVerifyEmail(verifyEmail).subscribe(
+      (response) => {
+        console.log('resendVerifyEmail: success');
+      },
+      (error) => {},
+    );
   }
 
   isEmailValidFormat(): boolean {
